@@ -11,7 +11,4 @@ TravelApp.controller("TravelController", function($scope, $window, $http, $timeo
 
     };
 
-
-    console.log(NewsAndEvents);
-
 });
