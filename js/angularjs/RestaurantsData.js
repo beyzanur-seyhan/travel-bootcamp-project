@@ -1,7 +1,7 @@
 var Restaurants = [
 
     {
-        imgUrl: "http://www.ansonika.com/panagea/img/restaurant_1.jpg",
+        imgUrl: "img/restaurant_1.jpg",
         title: "Da Alfredo",
         point: 8.5
     },
