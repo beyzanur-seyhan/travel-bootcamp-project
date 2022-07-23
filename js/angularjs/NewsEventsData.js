@@ -1,7 +1,7 @@
 var NewsAndEvents = [
 
     {
-        imgUrl: "http://www.ansonika.com/panagea/img/news_home_1.jpg",
+        imgUrl: "https://www.ansonika.com/panagea/img/news_home_1.jpg",
         date: {
             day: 28,
             month:"February"
