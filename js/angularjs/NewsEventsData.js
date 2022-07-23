@@ -1,7 +1,7 @@
 var NewsAndEvents = [
 
     {
-        imgUrl: "https://www.ansonika.com/panagea/img/news_home_1.jpg",
+        imgUrl: "img/news_home_1.jpg",
         date: {
             day: 28,
             month:"February"
@@ -9,7 +9,7 @@ var NewsAndEvents = [
         info: {
             author: {
                 name: "Mark Twain",
-                imgUrl: "http://www.ansonika.com/panagea/img/thumb_blog.jpg"
+                imgUrl: "img/thumb_blog.jpg"
             },
         date: "28.02.2017",
         title: "Pri oportere scribentur eu",
@@ -19,7 +19,7 @@ var NewsAndEvents = [
     },
 
     {
-        imgUrl: "http://www.ansonika.com/panagea/img/news_home_2.jpg",
+        imgUrl: "img/news_home_2.jpg",
         date: {
             day: 16,
             month:"April"
@@ -27,7 +27,7 @@ var NewsAndEvents = [
         info: {
             author: {
                 name: "Jhon Doe",
-                imgUrl: "http://www.ansonika.com/panagea/img/thumb_blog.jpg"
+                imgUrl: "img/thumb_blog.jpg"
             },
         date: "16.04.2017",
         title: "Duo eius postea suscipit ad",
@@ -37,7 +37,7 @@ var NewsAndEvents = [
     },
 
     {
-        imgUrl: "http://www.ansonika.com/panagea/img/news_home_3.jpg",
+        imgUrl: "img/news_home_3.jpg",
         date: {
             day: 05,
             month:"June"
@@ -45,7 +45,7 @@ var NewsAndEvents = [
         info: {
             author: {
                 name: "Luca Robinson",
-                imgUrl: "http://www.ansonika.com/panagea/img/thumb_blog.jpg"
+                imgUrl: "img/thumb_blog.jpg"
             },
         date: "05.06.2018",
         title: "Elitr mandamus cu has",
@@ -55,7 +55,7 @@ var NewsAndEvents = [
     },
 
     {
-        imgUrl: "http://www.ansonika.com/panagea/img/news_home_4.jpg",
+        imgUrl: "img/news_home_4.jpg",
         date: {
             day: 12,
             month:"October"
@@ -63,7 +63,7 @@ var NewsAndEvents = [
         info: {
             author: {
                 name: "Paula Rodrigez",
-                imgUrl: "http://www.ansonika.com/panagea/img/thumb_blog.jpg"
+                imgUrl: "img/thumb_blog.jpg"
             },
         date: "12.10.2017",
         title: "Pri oportere scribentur eu",
