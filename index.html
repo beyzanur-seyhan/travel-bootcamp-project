@@ -30,6 +30,8 @@
     <link href="js/modernizr_slider.js" rel="stylesheet">
 
 	<script src="js/angularjs/angular.min.js"></script>
+	<script src="js/angularjs/RestaurantsData.js"></script>
+	<script src="js/angularjs/NewsEventsData.js"></script>
 	<script src="js/angularjs/TravelService.js"></script>
 	<script src="js/angularjs/TravelFactory.js"></script>
 	<script src="js/angularjs/TravelApp.js"></script>
@@ -38,7 +40,7 @@
 
 <body>
 		
-	<div ng-app="TravelApp" ng-controller="TravelController">
+	<div ng-app="TravelApp" ng-controller="TravelController" ng-init="GetData();">
 		<div id="page">
 		
 			<header class="header menu_fixed">
@@ -520,19 +522,19 @@
 							<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
 						</div>
 						<div class="row">
-							<div class="col-xl-3 col-lg-6 col-md-6">
+							<div class="col-xl-3 col-lg-6 col-md-6" ng-repeat="Restaurant in Restaurants | limitTo:4">
 								<a href="restaurant-detail.html" class="grid_item">
 									<figure>
-										<div class="score"><strong>8.5</strong></div>
-										<img src="img/restaurant_1.jpg" class="img-fluid" alt="">
+										<div class="score"><strong>{{Restaurant.point}}</strong></div>
+										<img src="{{Restaurant.imgUrl}}" class="img-fluid" alt="">
 										<div class="info">
-											<h3>Da Alfredo</h3>
+											<h3>{{Restaurant.title}}</h3>
 										</div>
 									</figure>
 								</a>
 							</div>
 							<!-- /grid_item -->
-							<div class="col-xl-3 col-lg-6 col-md-6">
+							<!-- <div class="col-xl-3 col-lg-6 col-md-6">
 								<a href="restaurant-detail.html" class="grid_item">
 									<figure>
 										<div class="score"><strong>7.9</strong></div>
@@ -542,9 +544,9 @@
 										</div>
 									</figure>
 								</a>
-							</div>
+							</div> -->
 							<!-- /grid_item -->
-							<div class="col-xl-3 col-lg-6 col-md-6">
+							<!-- <div class="col-xl-3 col-lg-6 col-md-6">
 								<a href="restaurant-detail.html" class="grid_item">
 									<figure>
 										<div class="score"><strong>7.5</strong></div>
@@ -554,9 +556,9 @@
 										</div>
 									</figure>
 								</a>
-							</div>
+							</div> -->
 							<!-- /grid_item -->
-							<div class="col-xl-3 col-lg-6 col-md-6">
+							<!-- <div class="col-xl-3 col-lg-6 col-md-6">
 								<a href="restaurant-detail.html" class="grid_item">
 									<figure>
 										<div class="score"><strong>9.0</strong></div>
@@ -566,7 +568,7 @@
 										</div>
 									</figure>
 								</a>
-							</div>
+							</div> -->
 							<!-- /grid_item -->
 						</div>
 						<!-- /row -->
@@ -598,21 +600,21 @@
 							<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
 						</div>
 						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-lg-6" ng-repeat="News in NewsAndEvents">
 								<a class="box_news" href="#0">
-									<figure><img src="img/news_home_1.jpg" alt="">
-										<figcaption><strong>28</strong>Dec</figcaption>
+									<figure><img src="{{News.imgUrl}}" alt="news">
+										<figcaption><strong>{{News.date.day}}</strong>{{News.date.month.substring(0,3)}}</figcaption>
 									</figure>
 									<ul>
-										<li>Mark Twain</li>
-										<li>20.11.2017</li>
+										<li>{{News.info.author.name}}</li>
+										<li>{{News.info.date}}</li>
 									</ul>
-									<h4>Pri oportere scribentur eu</h4>
-									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+									<h4>{{News.info.title}}</h4>
+									<p>{{News.info.desc.substring(0,70)}}...</p>
 								</a>
 							</div>
 							<!-- /box_news -->
-							<div class="col-lg-6">
+							<!-- <div class="col-lg-6">
 								<a class="box_news" href="#0">
 									<figure><img src="img/news_home_2.jpg" alt="">
 										<figcaption><strong>28</strong>Dec</figcaption>
@@ -624,9 +626,9 @@
 									<h4>Duo eius postea suscipit ad</h4>
 									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
 								</a>
-							</div>
+							</div> -->
 							<!-- /box_news -->
-							<div class="col-lg-6">
+							<!-- <div class="col-lg-6">
 								<a class="box_news" href="#0">
 									<figure><img src="img/news_home_3.jpg" alt="">
 										<figcaption><strong>28</strong>Dec</figcaption>
@@ -638,9 +640,9 @@
 									<h4>Elitr mandamus cu has</h4>
 									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
 								</a>
-							</div>
+							</div> -->
 							<!-- /box_news -->
-							<div class="col-lg-6">
+							<!-- <div class="col-lg-6">
 								<a class="box_news" href="#0">
 									<figure><img src="img/news_home_4.jpg" alt="">
 										<figcaption><strong>28</strong>Dec</figcaption>
@@ -652,7 +654,7 @@
 									<h4>Id est adhuc ignota delenit</h4>
 									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
 								</a>
-							</div>
+							</div> -->
 							<!-- /box_news -->
 						</div>
 						<!-- /row -->
