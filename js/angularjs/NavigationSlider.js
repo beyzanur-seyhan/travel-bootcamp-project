@@ -1,0 +1,42 @@
+var Countries = [
+  {
+    photo: 'http://www.ansonika.com/panagea/img/flex_slides/slide_1_thumb.jpg',
+    bgPhoto: 'http://www.ansonika.com/panagea/img/flex_slides/slide_1.jpg',
+    city: 'Bangkok',
+    country: 'THAILAND',
+    price: 75,
+    description: 'Bangkok, A city that never stays the same',
+  },
+  {
+    photo: 'http://www.ansonika.com/panagea/img/flex_slides/slide_2_thumb.jpg',
+    bgPhoto: 'http://www.ansonika.com/panagea/img/flex_slides/slide_2.jpg',
+    city: 'Dubai',
+    country: 'EMIRATES',
+    price: 65,
+    description: 'Dubai, The most attractive destination',
+  },
+  {
+    photo: 'http://www.ansonika.com/panagea/img/flex_slides/slide_3_thumb.jpg',
+    bgPhoto: 'http://www.ansonika.com/panagea/img/flex_slides/slide_3.jpg',
+    city: 'Cairo',
+    country: 'EGYPT',
+    price: 85,
+    description: 'Cairo, Traditions and culture',
+  },
+  {
+    photo: 'http://www.ansonika.com/panagea/img/flex_slides/slide_4_thumb.jpg',
+    bgPhoto: 'http://www.ansonika.com/panagea/img/flex_slides/slide_4.jpg',
+    city: 'Nassou',
+    country: 'BAHAMAS',
+    price: 90,
+    description: 'Nassau, Unique beaches and horizons',
+  },
+  {
+    photo: 'http://www.ansonika.com/panagea/img/flex_slides/slide_5_thumb.jpg',
+    bgPhoto: 'http://www.ansonika.com/panagea/img/flex_slides/slide_5.jpg',
+    city: 'Roma',
+    country: 'ITALY',
+    price: 70,
+    description: 'Rome, The Eternal City',
+  },
+];

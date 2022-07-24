@@ -1,0 +1,67 @@
+var Recommend = [
+  (item1 = {
+    src: 'http://www.ansonika.com/panagea/img/tour_1.jpg',
+    category: 'HISTORIC',
+    title: 'Arc Triomphe',
+    description:
+      'Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.',
+    price: 54,
+    hour: 1,
+    min: 30,
+    reviews: 350,
+    feedback: 'Superb',
+    score: 8.9,
+  }),
+  (item2 = {
+    src: 'http://www.ansonika.com/panagea/img/tour_2.jpg',
+    category: 'CHURCHES',
+    title: 'Notredam',
+    description:
+      'Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.',
+    price: 124,
+    hour: 1,
+    min: 30,
+    reviews: 350,
+    feedback: 'Good',
+    score: 7.0,
+  }),
+  (item3 = {
+    src: 'http://www.ansonika.com/panagea/img/tour_3.jpg',
+    category: 'HISTORIC',
+    title: 'Versailles',
+    description:
+      'Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.',
+    price: 25,
+    hour: 1,
+    min: 30,
+    reviews: 350,
+    feedback: 'Good',
+    score: 7.5,
+  }),
+  (item4 = {
+    src: 'http://www.ansonika.com/panagea/img/tour_4.jpg',
+    category: 'MUSEUM',
+    title: 'Pompidue Museum',
+    description:
+      'Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.',
+    price: 45,
+    hour: 2,
+    min: 30,
+    reviews: 350,
+    feedback: 'Superb',
+    score: 9.0,
+  }),
+  (item5 = {
+    src: 'http://www.ansonika.com/panagea/img/tour_5.jpg',
+    category: 'WALKING',
+    title: 'Tour Eiffel',
+    description:
+      'Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.',
+    price: 65,
+    hour: 1,
+    min: 30,
+    reviews: 350,
+    feedback: 'Good',
+    score: 7.5,
+  }),
+];
