@@ -1,14 +1,28 @@
-var TravelApp = angular.module("TravelApp", ["TravelServiceModule", "TravelFactoryModule"]);
-TravelApp.controller("TravelController", function($scope, $window, $http, $timeout, $sce, TravelService, TravelFactory){
-
+var TravelApp = angular.module('TravelApp', [
+  'TravelServiceModule',
+  'TravelFactoryModule',
+]);
+TravelApp.controller(
+  'TravelController',
+  function (
+    $scope,
+    $window,
+    $http,
+    $timeout,
+    $sce,
+    TravelService,
+    TravelFactory,
+  ) {
     $scope.Restaurants = [];
     $scope.NewsAndEvents = [];
+    $scope.Countries = [];
+    $scope.Recommend = [];
 
-    $scope.GetData = function(){
-
-        $scope.Restaurants = Restaurants;
-        $scope.NewsAndEvents = NewsAndEvents;
-
+    $scope.GetData = function () {
+      $scope.Restaurants = Restaurants;
+      $scope.NewsAndEvents = NewsAndEvents;
+      $scope.Countries = Countries;
+      $scope.Recommend = Recommend;
     };
-
-});
+  },
+);
