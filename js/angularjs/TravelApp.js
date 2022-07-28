@@ -17,12 +17,14 @@ TravelApp.controller(
     $scope.NewsAndEvents = [];
     $scope.Countries = [];
     $scope.Recommend = [];
+    $scope.EnjoyTravel = [];
 
     $scope.GetData = function () {
       $scope.Restaurants = Restaurants;
       $scope.NewsAndEvents = NewsAndEvents;
       $scope.Countries = Countries;
       $scope.Recommend = Recommend;
+      $scope.EnjoyTravel = EnjoyTravel;
     };
   },
 );
