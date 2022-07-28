@@ -6247,15 +6247,7 @@ ul.list_feat li p {
   backface-visibility: hidden;
 }
 
-.call_section {
-  background: url(../img/bg_call_section.jpg) center center no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 400px;
-  padding: 10% 0;
-}
+
 
 .box_faq {
   position: relative;
