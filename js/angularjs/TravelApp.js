@@ -29,6 +29,7 @@ TravelApp.controller(
       $scope.Adventure = Adventure;
       $scope.Hotels = Hotels;
       $scope.EnjoyTravel = EnjoyTravel;
+      console.log($scope.Adventure);
     };
   },
 );
