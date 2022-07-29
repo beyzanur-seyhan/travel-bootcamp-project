@@ -18,6 +18,8 @@ TravelApp.controller(
     $scope.Countries = [];
     $scope.Recommend = [];
     $scope.EnjoyTravel = [];
+    $scope.Hotels = [];
+    $scope.Adventure = [];
 
     $scope.GetData = function () {
       $scope.Restaurants = Restaurants;
@@ -25,6 +27,8 @@ TravelApp.controller(
       $scope.Countries = Countries;
       $scope.Recommend = Recommend;
       $scope.EnjoyTravel = EnjoyTravel;
+      $scope.Hotels = Hotels;
+      $scope.Adventure = Adventure;
     };
   },
 );
