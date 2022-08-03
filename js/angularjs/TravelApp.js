@@ -30,5 +30,11 @@ TravelApp.controller(
       $scope.Hotels = Hotels;
       $scope.Adventure = Adventure;
     };
+    $scope.DisplayTourDetail = function (id) {
+      $scope.element = TravelFactory.DisplayTourDetail(Recommend[id]);
+    };
+    $scope.ViewAllTour = function (id) {
+      $scope.element = TravelFactory.ViewAllTour(Recommend[id]);
+    };
   },
 );
