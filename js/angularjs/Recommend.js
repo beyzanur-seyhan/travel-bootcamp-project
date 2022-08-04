@@ -1,6 +1,6 @@
 var Recommend = [
   (item1 = {
-    src: 'http://www.ansonika.com/panagea/img/tour_1.jpg',
+    src: './img/tour_1.jpg',
     category: 'HISTORIC',
     title: 'Arc Triomphe',
     description:
@@ -13,7 +13,7 @@ var Recommend = [
     score: 8.9,
   }),
   (item2 = {
-    src: 'http://www.ansonika.com/panagea/img/tour_2.jpg',
+    src: './img/tour_2.jpg',
     category: 'CHURCHES',
     title: 'Notredam',
     description:
@@ -26,7 +26,7 @@ var Recommend = [
     score: 7.0,
   }),
   (item3 = {
-    src: 'http://www.ansonika.com/panagea/img/tour_3.jpg',
+    src: './img/tour_3.jpg',
     category: 'HISTORIC',
     title: 'Versailles',
     description:
@@ -39,7 +39,7 @@ var Recommend = [
     score: 7.5,
   }),
   (item4 = {
-    src: 'http://www.ansonika.com/panagea/img/tour_4.jpg',
+    src: './img/tour_4.jpg',
     category: 'MUSEUM',
     title: 'Pompidue Museum',
     description:
@@ -52,7 +52,7 @@ var Recommend = [
     score: 9.0,
   }),
   (item5 = {
-    src: 'http://www.ansonika.com/panagea/img/tour_5.jpg',
+    src: './img/tour_5.jpg',
     category: 'WALKING',
     title: 'Tour Eiffel',
     description:
