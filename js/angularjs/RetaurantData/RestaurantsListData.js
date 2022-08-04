@@ -1,4 +1,4 @@
-var RestaurantsList = [
+var RestaurantsListData = [
 
     {   index: 1,
         imgUrl: "restaurant_1.jpg",

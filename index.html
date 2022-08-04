@@ -33,9 +33,9 @@
 	<link href="js/modernizr_slider.js" rel="stylesheet">
 
 	<script src="js/angularjs/angular.min.js"></script>
-	<script src="js/angularjs/RetaurantData/RestaurantsList.js"></script>
-	<script src="js/angularjs/RetaurantData/RestaurantDetail.js"></script>
-	<script src="js/angularjs/NewsEventsData.js"></script>
+	<script src="js/angularjs/RetaurantData/RestaurantDetailData.js"></script>
+	<script src="js/angularjs/RetaurantData/RestaurantsListData.js"></script>
+	<script src="js/angularjs/BlogData/BlogsListData.js"></script>
 	<script src="js/angularjs/NavigationSlider.js"></script>
 	<script src="js/angularjs/Recommend.js"></script>
 	<script src="js/angularjs/Adventure.js"></script>
@@ -2173,22 +2173,22 @@
 					<div class="container margin_80_55">
 						<div class="main_title_2">
 							<span><em></em></span>
-							<h3>News and Events</h3>
-							<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+							<h3>Recent Posts</h3>
+							<p>View Panagea's special content.</p>
 						</div>
 						<div class="row">
-							<div class="col-lg-6" ng-repeat="News in NewsAndEvents">
-								<a class="box_news" href="#0">
-									<figure><img src="{{News.imgUrl}}" alt="news">
-										<figcaption><strong>{{News.date.day}}</strong>{{News.date.month.substring(0,3)}}
+							<div class="col-lg-6" ng-repeat="Post in BlogsList">
+								<a class="box_news" style="cursor: pointer;">
+									<figure><img src="{{Post.imgUrl}}" alt="news">
+										<figcaption><strong>{{Post.date.day}}</strong>{{Post.date.month.substring(0,3)}}
 										</figcaption>
 									</figure>
 									<ul>
-										<li>{{News.info.author.name}}</li>
-										<li>{{News.info.date}}</li>
+										<li>{{Post.info.author.name}}</li>
+										<li>{{Post.info.date}}</li>
 									</ul>
-									<h4>{{News.info.title}}</h4>
-									<p>{{News.info.desc.substring(0,70)}}...</p>
+									<h4>{{Post.info.title}}</h4>
+									<p>{{Post.info.desc.substring(0,70)}}...</p>
 								</a>
 							</div>
 							<!-- /box_news -->

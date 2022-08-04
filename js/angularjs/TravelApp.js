@@ -10,8 +10,8 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.Adventure = [];
 
   $scope.GetData = function () {
-    $scope.RestaurantsList = RestaurantsList;
-    $scope.NewsAndEvents = NewsAndEvents;
+    $scope.RestaurantsList = RestaurantsListData;
+    $scope.BlogsList = BlogsListData;
     $scope.Countries = Countries;
     $scope.Recommend = Recommend;
     $scope.EnjoyTravel = EnjoyTravel;
@@ -28,7 +28,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
   $scope.GetRestaurantsData = function (RIndex) {
     $scope.RestaurantDetail = [];
-    $scope.RestaurantDetail = TravelFactory.DoCombineRestaurantData(RestaurantDetail[RIndex - 1], RestaurantsList[RIndex - 1]);
+    $scope.RestaurantDetail = TravelFactory.DoCombineRestaurantData(RestaurantDetailData[RIndex - 1], RestaurantsListData[RIndex - 1]);
   };
 
   $scope.SetRestaurantPointType = function () {

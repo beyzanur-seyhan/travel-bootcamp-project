@@ -1,4 +1,4 @@
-var NewsAndEvents = [
+var BlogsListData = [
 
     {
         imgUrl: "img/news_home_1.jpg",

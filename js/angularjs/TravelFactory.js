@@ -23,7 +23,7 @@ TravelFactoryModule.factory("TravelFactory", function(){
         DoValidatePointScale: function(){
             var PointType = "";
 
-            RestaurantsList.forEach((Restaurant) => {
+            RestaurantsListData.forEach((Restaurant) => {
                 if(Restaurant.point >= 7 && Restaurant.point < 8.5){
                     PointType = "Good";
                 }

@@ -21,6 +21,7 @@ TravelServiceModule.service("TravelService", function($http, $q){
     };
 
     this.DoAddUserReview = function(RIndex, FullName, Email, Comment, Rating){
+        
         var CurrentDate = new Date();
         var Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         
@@ -37,7 +38,7 @@ TravelServiceModule.service("TravelService", function($http, $q){
             }
           };
 
-        return RestaurantDetail[RIndex - 1].userReviews.push(UserReviewData);
+        return RestaurantDetailData[RIndex - 1].userReviews.push(UserReviewData);
     };
 
 });
