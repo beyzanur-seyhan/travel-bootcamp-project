@@ -31,10 +31,10 @@ TravelApp.controller(
       $scope.Adventure = Adventure;
     };
     $scope.DisplayTourDetail = function (id) {
-      $scope.element = TravelFactory.DisplayTourDetail(Recommend[id]);
+      $scope.singleTour = TravelFactory.DisplayTourDetail(Recommend[id]);
     };
     $scope.ViewAllTour = function (id) {
-      $scope.element = TravelFactory.ViewAllTour(Recommend[id]);
+      $scope.TourList = TravelFactory.ViewAllTour(Recommend[id]);
     };
   },
 );
