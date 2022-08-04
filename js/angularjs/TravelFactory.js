@@ -1,8 +1,15 @@
 var TravelFactoryModule = angular.module("TravelFactoryModule", []);
 TravelFactoryModule.factory("TravelFactory", function(){
-
+    
     return{
-        
+
+        DisplayTourDetail: function (id) {
+            return id;
+          },
+          ViewAllTour: function (id) {
+            return id;
+          },
+
         DoCombineRestaurantData: function(ItemDetail, ItemList){
             var Item = { 
                 detail: ItemDetail, 
@@ -41,3 +48,4 @@ TravelFactoryModule.factory("TravelFactory", function(){
     };
 
 });
+

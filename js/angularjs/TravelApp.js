@@ -19,6 +19,13 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.Adventure = Adventure;
   };
 
+  $scope.DisplayTourDetail = function (id) {
+    $scope.element = TravelFactory.DisplayTourDetail(Recommend[id]);
+  };
+  $scope.ViewAllTour = function (id) {
+    $scope.element = TravelFactory.ViewAllTour(Recommend[id]);
+  };
+
   $scope.GetRestaurantsData = function (RIndex) {
     $scope.RestaurantDetail = [];
     $scope.RestaurantDetail = TravelFactory.DoCombineRestaurantData(RestaurantDetail[RIndex - 1], RestaurantsList[RIndex - 1]);
@@ -35,12 +42,12 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
   $scope.SubmitUserReview = function (RIndex) {
 
-    if(TravelService.DoValidateEmptyFormArea()){
+    if (TravelService.DoValidateEmptyFormArea()) {
       return;
     }
-    else{
+    else {
       TravelService.DoAddUserReview(RIndex, $scope.IFullName, $scope.IEmail, $scope.TxtComment, $scope.SlctRating);
-      
+
       $scope.IFullName = ""
       $scope.IEmail = "";
       $scope.SlctRating = "";
@@ -49,5 +56,4 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
   };
 
-},
-);
+});
