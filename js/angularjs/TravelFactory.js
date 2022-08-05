@@ -10,14 +10,18 @@ TravelFactoryModule.factory("TravelFactory", function(){
             return id;
           },
 
-        DoCombineRestaurantData: function(ItemDetail, ItemList){
-            var Item = { 
-                detail: ItemDetail, 
-                title: ItemList.title, 
-                point: ItemList.point, 
-                price: ItemList.price 
-            }
-            return Item;         
+        DoCombineRestaurantData: function(RDetail, RList){
+            var RestaurantData = { 
+                detail: RDetail, 
+                title: RList.title, 
+                point: RList.point, 
+                price: RList.price 
+            };
+            return RestaurantData;         
+        },
+
+        DoReturnBlogPostData: function(BData){
+            return BData;
         },
 
         DoValidatePointScale: function(){
@@ -39,7 +43,7 @@ TravelFactoryModule.factory("TravelFactory", function(){
 
         DoCountRatingPoint: function(EndTime){
             var RatingPoint = [];
-    
+            
             for (var i = 1; i <= EndTime; i++) {
                 RatingPoint.push(i);     
             }

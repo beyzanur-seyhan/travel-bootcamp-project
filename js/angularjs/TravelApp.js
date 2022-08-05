@@ -11,7 +11,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
   $scope.GetData = function () {
     $scope.RestaurantsList = RestaurantsListData;
-    $scope.BlogsList = BlogsListData;
+    $scope.BlogPosts = BlogPoststData;
     $scope.Countries = Countries;
     $scope.Recommend = Recommend;
     $scope.EnjoyTravel = EnjoyTravel;
@@ -31,17 +31,26 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.RestaurantDetail = TravelFactory.DoCombineRestaurantData(RestaurantDetailData[RIndex - 1], RestaurantsListData[RIndex - 1]);
   };
 
+  $scope.GetBlogPostDetailData = function(BIndex){
+    $scope.AsidePostAreaTitle = "Recent Posts";
+    $scope.RecentOrResultPost = [];
+    $scope.RecentOrResultPost = BlogPoststData;
+    if(BIndex){
+      $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
+    }
+    $scope.DisplayStatus = "d-none";
+  };
+
   $scope.SetRestaurantPointType = function () {
     $scope.RestaurantPointType = "";
     $scope.RestaurantPointType = TravelFactory.DoValidatePointScale();
   };
 
-  $scope.CountRatingPoint = function (Rating) {
-    return TravelFactory.DoCountRatingPoint(Rating);
+  $scope.CountRatingPoint = function (NumRating) {
+    return TravelFactory.DoCountRatingPoint(NumRating);
   };
 
   $scope.SubmitUserReview = function (RIndex) {
-
     if (TravelService.DoValidateEmptyFormArea()) {
       return;
     }
@@ -50,10 +59,34 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
       $scope.IFullName = ""
       $scope.IEmail = "";
-      $scope.SlctRating = "";
+      $scope.SlctRating = undefined;
       $scope.TxtComment = "";
     }
-
   };
+
+  $scope.ViewSearchResult = function(){
+   if(!$scope.ISearchPost){
+    return;
+   }
+   else{
+    $scope.BlogPostSearchResult = TravelService.DoFindSearchResult($scope.ISearchPost);
+    if(!$scope.BlogPostSearchResult){
+      alert("Search Result: None!");
+      return;
+    }
+    else{
+      $scope.ISearchPost = "";
+      $scope.RecentOrResultPost = [$scope.BlogPostSearchResult];
+      $scope.AsidePostAreaTitle = "Result Posts";
+      $scope.RecentLink= "#fc5b62";
+      $scope.DisplayStatus = "";
+    }
+    
+   }
+ };
+
+ $scope.OpenBlogPostResult = function(BIndex){
+  $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
+ };
 
 });

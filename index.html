@@ -27,6 +27,9 @@
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/vendors.css" rel="stylesheet">
 
+	<!-- SPECIFIC CSS -->
+	<link href="css/blog.css" rel="stylesheet">
+
 	<!-- YOUR CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
 
@@ -35,7 +38,7 @@
 	<script src="js/angularjs/angular.min.js"></script>
 	<script src="js/angularjs/RetaurantData/RestaurantDetailData.js"></script>
 	<script src="js/angularjs/RetaurantData/RestaurantsListData.js"></script>
-	<script src="js/angularjs/BlogData/BlogsListData.js"></script>
+	<script src="js/angularjs/BlogData/BlogPostsData.js"></script>
 	<script src="js/angularjs/NavigationSlider.js"></script>
 	<script src="js/angularjs/Recommend.js"></script>
 	<script src="js/angularjs/Adventure.js"></script>
@@ -1536,6 +1539,105 @@
 			</div>
 			<!-- End View Full Detail -->
 
+			<!-- Start Blog Post Detail Modal -->
+			<div class="modal fade blogPostModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-scrollable">
+				  <div class="modal-content">
+					  <div class="modal-header">
+						<h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">×</span>
+						</button>
+					  </div>
+					  <div class="modal-body">
+						<main>
+							<div class="container margin_60_35">
+								<div class="row">
+									<div class="col-lg-9">
+										<div class="bloglist singlepost">
+											<p><img alt="" class="img-fluid" src="img/blog/{{BlogPostDetail.imgUrl}}"></p>
+											<h1>{{BlogPostDetail.title}}</h1>
+											<div class="postmeta">
+												<ul>
+													<li><a href="#"><i class="icon_folder-alt"></i> Collections</a></li>
+													<li><a href="#"><i class="icon_clock_alt"></i> {{BlogPostDetail.date.day}}/{{BlogPostDetail.date.month.num}}/{{BlogPostDetail.date.year}}</a></li>
+													<li><a href="#"><i class="icon_pencil-edit"></i> {{BlogPostDetail.author.name}}</a></li>
+												</ul>
+											</div>
+											<!-- /post meta -->
+											<div class="post-content">
+												<div class="dropcaps">
+													<p>{{BlogPostDetail.content}}</p>
+												</div>
+					
+												
+											</div>
+											<!-- /post -->
+										</div>
+										<!-- /single-post -->
+					
+										
+										
+					
+										
+									</div>
+									<!-- /col -->
+					
+									<aside class="col-lg-3">
+										<div class="widget">
+											<form>
+												<div class="form-group">
+													<input type="text" name="search" id="search" class="form-control" placeholder="Search A Post..." ng-model="ISearchPost">
+												</div>
+												<button type="submit" id="submit" class="btn_1 rounded" ng-click="ViewSearchResult();"> Search</button>
+											</form>
+										</div>
+										<!-- /widget -->
+										<div class="widget">
+											<div class="widget-title">
+												<h4>{{AsidePostAreaTitle}}</h4>
+											</div>
+											<ul class="comments-list">
+												<li ng-repeat="BlogPost in RecentOrResultPost | orderBy:'-date.year' | limitTo:3" ng-click="OpenBlogPostResult(BlogPost.index);" style="cursor: pointer;">
+													<div class="alignleft">
+														<a><img src="img/blog/{{BlogPost.imgUrl}}" alt="{{BlogPost.title}}"></a>
+													</div>
+													<small>{{BlogPost.date.day}}.{{BlogPost.date.month.num}}.{{BlogPost.date.year}}</small>
+													<h3><a title="{{Blog.title}}">{{BlogPost.title}}</a></h3>
+												</li>
+												<!-- <li>
+													<div class="alignleft">
+														<a href="#0"><img src="img/blog-6.jpg" alt=""></a>
+													</div>
+													<small>11.08.2016</small>
+													<h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
+												</li>
+												<li>
+													<div class="alignleft">
+														<a href="#0"><img src="img/blog-4.jpg" alt=""></a>
+													</div>
+													<small>11.08.2016</small>
+													<h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
+												</li> -->
+												
+												<a class="{{DisplayStatus}}" style="cursor: pointer; color:{{RecentLink}}" ng-click="GetBlogPostDetailData()"><i class="icon-angle-circled-left"></i>Recent Posts</a>	
+											</ul>
+											
+										</div>
+										<!-- /widget -->
+										
+									</aside>
+									<!-- /aside -->
+								</div>
+								<!-- /row -->
+							</div>
+						</main>
+					  </div>
+					</div>
+				</div>
+			  </div>
+			<!-- End Post Detail Modal -->
+
 			<header class="header menu_fixed">
 				<div id="preloader">
 					<div data-loader="circle-side"></div>
@@ -2026,18 +2128,18 @@
 							<p>View Panagea's special content.</p>
 						</div>
 						<div class="row">
-							<div class="col-lg-6" ng-repeat="Post in BlogsList">
-								<a class="box_news" style="cursor: pointer;">
-									<figure><img src="{{Post.imgUrl}}" alt="news">
-										<figcaption><strong>{{Post.date.day}}</strong>{{Post.date.month.substring(0,3)}}
+							<div class="col-lg-6" ng-repeat="BlogPost in BlogPosts | orderBy: '-date.year' | limitTo: 4">
+								<a class="box_news" style="cursor: pointer;" data-toggle="modal" data-target=".blogPostModal" ng-click="GetBlogPostDetailData(BlogPost.index);">
+									<figure><img src="img/blog/{{BlogPost.imgUrl}}" alt="{{Post.title}}">
+										<figcaption><strong>{{BlogPost.date.day}}</strong>{{BlogPost.date.month.name.substring(0,3)}}
 										</figcaption>
 									</figure>
 									<ul>
-										<li>{{Post.info.author.name}}</li>
-										<li>{{Post.info.date}}</li>
+										<li>{{BlogPost.author.name}}</li>
+										<li>{{BlogPost.date.day}}.{{BlogPost.date.month.num}}.{{BlogPost.date.year}}</li>
 									</ul>
-									<h4>{{Post.info.title}}</h4>
-									<p>{{Post.info.desc.substring(0,70)}}...</p>
+									<h4>{{BlogPost.title}}</h4>
+									<p>{{BlogPost.desc.substring(0,70)}}...</p>
 								</a>
 							</div>
 							<!-- /box_news -->
@@ -2283,8 +2385,6 @@
 		});	
 		</script>
 
-=======
-
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/map_single_tour.js"></script>
 	<script src="js/markerclusterer.js"></script>
@@ -2310,10 +2410,7 @@
 			});
 		});
 	</script>
->>>>>>> 57295fc8c2aa07966676aea3338126405e822ba0
 	<!-- FlexSlider -->
-
-
 
 	<script defer src="js/jquery.flexslider.js"></script>
 	<script>
