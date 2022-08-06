@@ -7190,6 +7190,30 @@ a.social_bt.google:before {
   font-style: italic;
 }
 
+/* Change ID */
+
+#NonVis {display: none;}
+
+/* Register */
+#RegisterContainer {
+  display: flex;
+  justify-content: center;
+}
+#RegisterSubmit {
+  margin-left: 55px;
+}
+
+/* Login */
+
+#LoginForm {
+  display: flex;
+  align-items: center;
+justify-content: center;
+
+
+
+}
+
 /* Magnific popup */
 .mfp-bottom-bar {
   padding: 0 10px !important;
