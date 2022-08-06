@@ -56,6 +56,9 @@
 		.red{
 			color: red;
 		}
+		.blogPostModal{
+			padding-right: 17px;
+		}
 	</style>
 
 </head>
@@ -1540,7 +1543,7 @@
 			<!-- End View Full Detail -->
 
 			<!-- Start Blog Post Detail Modal -->
-			<div class="modal fade blogPostModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<div class="modal fade blogPostModal" style="z-index: 1051;" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-scrollable">
 				  <div class="modal-content">
 					  <div class="modal-header">
@@ -1555,7 +1558,7 @@
 								<div class="row">
 									<div class="col-lg-9">
 										<div class="bloglist singlepost">
-											<p><img alt="" class="img-fluid" src="img/blog/{{BlogPostDetail.imgUrl}}"></p>
+											<p><img alt="{{BlogPostDetail.title}}" class="img-fluid" src="img/blog/{{BlogPostDetail.imgUrl}}"></p>
 											<h1>{{BlogPostDetail.title}}</h1>
 											<div class="postmeta">
 												<ul>
@@ -1567,19 +1570,12 @@
 											<!-- /post meta -->
 											<div class="post-content">
 												<div class="dropcaps">
-													<p>{{BlogPostDetail.content}}</p>
-												</div>
-					
-												
+													<p>{{BlogPostDetail.desc}}</p>
+												</div>	
 											</div>
 											<!-- /post -->
 										</div>
 										<!-- /single-post -->
-					
-										
-										
-					
-										
 									</div>
 									<!-- /col -->
 					
@@ -1603,24 +1599,10 @@
 														<a><img src="img/blog/{{BlogPost.imgUrl}}" alt="{{BlogPost.title}}"></a>
 													</div>
 													<small>{{BlogPost.date.day}}.{{BlogPost.date.month.num}}.{{BlogPost.date.year}}</small>
-													<h3><a title="{{Blog.title}}">{{BlogPost.title}}</a></h3>
+													<h3><a href="" title="{{Blog.title}}">{{BlogPost.title}}</a></h3>
 												</li>
-												<!-- <li>
-													<div class="alignleft">
-														<a href="#0"><img src="img/blog-6.jpg" alt=""></a>
-													</div>
-													<small>11.08.2016</small>
-													<h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
-												</li>
-												<li>
-													<div class="alignleft">
-														<a href="#0"><img src="img/blog-4.jpg" alt=""></a>
-													</div>
-													<small>11.08.2016</small>
-													<h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
-												</li> -->
-												
-												<a class="{{DisplayStatus}}" style="cursor: pointer; color:{{RecentLink}}" ng-click="GetBlogPostDetailData()"><i class="icon-angle-circled-left"></i>Recent Posts</a>	
+											
+												<a href="" class="{{DisplayStatus}}" ng-click="GetBlogPostDetailData(); ChangeClassNameDispStatus();"><i class="icon-angle-circled-left"></i>Recent Posts</a>	
 											</ul>
 											
 										</div>
@@ -1637,6 +1619,74 @@
 				</div>
 			  </div>
 			<!-- End Post Detail Modal -->
+
+			<!-- Start View Blog Posts List Modal -->
+			<div class="modal fade blogPostsList" id="blogPostsList" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-scrollable">
+				  <div class="modal-content">
+			  
+					  <div class="modal-header">
+						<h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">×</span>
+						</button>
+					  </div>
+					  <div class="modal-body d-flex p-5" style="background-color: #f8f8f8;">
+						 <div class="blogPostList">
+							<div class="card mb-3" style="cursor: pointer;" ng-repeat="BlogPostList in RecentOrResultPost | orderBy: '-date.year'" data-toggle="modal" data-target=".blogPostModal" ng-click="GetBlogPostDetailData(BlogPostList.index); ChangeClassNameDispStatus();">
+								<div class="row no-gutters">
+								  <div class="col-md-4">
+									<img src="img/blog/{{BlogPostList.imgUrl}}" class="card-img" style="border-radius: 0;" alt="{{BlogPostList.title}}">
+								  </div>
+								  <div class="col-md-8">
+									<div class="card-body">
+									  <h5 class="card-title">{{BlogPostList.title}}</h5>
+									  <p class="card-text" style="max-width: 404px;">{{BlogPostList.desc.slice(0,142)}}...</p>
+									</div>
+									<ul class="d-flex align-items-center px-4 mb-0">
+										<li>
+											<img src="img/{{BlogPostList.author.imgUrl}}" alt="{{BlogPostList.author.name}}" class="rounded-circle" style="max-width: 26px;">
+										</li>
+										<li class="ml-2">{{BlogPostList.author.name}}</li>
+									</ul>
+								  </div>
+								</div>
+							  </div>
+						 </div>
+						 <aside class="col-lg-3">
+							<div class="widget">
+								<form>
+									<div class="form-group">
+										<input type="text" name="search" id="search" class="form-control" placeholder="Search A Post..." ng-model="ISearchPost">
+									</div>
+									<button type="submit" id="submit" class="btn_1 rounded" ng-click="ViewSearchResult();"> Search</button>
+								</form>
+							</div>
+							 <!-- /widget -->
+							<div class="widget">
+								<div class="widget-title">
+									<h4>Recent Posts</h4>
+								</div>
+								<ul class="comments-list">
+									<li ng-repeat="BlogPost in BlogPosts | orderBy:'-date.year' | limitTo:3" style="cursor: pointer;" ng-click="GetBlogPostDetailData(BlogPost.index); ChangeClassNameDispStatus();" data-toggle="modal" data-target=".blogPostModal">
+										<div class="alignleft">
+											<a><img src="img/blog/{{BlogPost.imgUrl}}" alt="{{BlogPost.title}}"></a>
+										</div>
+										<small>{{BlogPost.date.day}}.{{BlogPost.date.month.num}}.{{BlogPost.date.year}}</small>
+										<h3><a href="" title="{{Blog.title}}">{{BlogPost.title}}</a></h3>
+									</li> 
+								</ul>
+								
+							</div>
+							<!-- /widget -->
+							
+						</aside>
+						
+					  </div>
+					</div>
+				</div>
+			  </div>
+			<!-- Start View Blog Posts List Modal -->
 
 			<header class="header menu_fixed">
 				<div id="preloader">
@@ -2060,42 +2110,6 @@
 								</a>
 							</div>
 							<!-- /grid_item -->
-							<!-- <div class="col-xl-3 col-lg-6 col-md-6">
-								<a href="restaurant-detail.html" class="grid_item">
-									<figure>
-										<div class="score"><strong>7.9</strong></div>
-										<img src="img/restaurant_2.jpg" class="img-fluid" alt="">
-										<div class="info">
-											<h3>Slow Food</h3>
-										</div>
-									</figure>
-								</a>
-							</div> -->
-							<!-- /grid_item -->
-							<!-- <div class="col-xl-3 col-lg-6 col-md-6">
-								<a href="restaurant-detail.html" class="grid_item">
-									<figure>
-										<div class="score"><strong>7.5</strong></div>
-										<img src="img/restaurant_3.jpg" class="img-fluid" alt="">
-										<div class="info">
-											<h3>Bella Napoli</h3>
-										</div>
-									</figure>
-								</a>
-							</div> -->
-							<!-- /grid_item -->
-							<!-- <div class="col-xl-3 col-lg-6 col-md-6">
-								<a href="restaurant-detail.html" class="grid_item">
-									<figure>
-										<div class="score"><strong>9.0</strong></div>
-										<img src="img/restaurant_4.jpg" class="img-fluid" alt="">
-										<div class="info">
-											<h3>Marcus</h3>
-										</div>
-									</figure>
-								</a>
-							</div> -->
-							<!-- /grid_item -->
 						</div>
 						<!-- /row -->
 						<a href="restaurants-grid-isotope.html"><strong>View all ({{RestaurantsList.length}}) <i
@@ -2129,7 +2143,7 @@
 						</div>
 						<div class="row">
 							<div class="col-lg-6" ng-repeat="BlogPost in BlogPosts | orderBy: '-date.year' | limitTo: 4">
-								<a class="box_news" style="cursor: pointer;" data-toggle="modal" data-target=".blogPostModal" ng-click="GetBlogPostDetailData(BlogPost.index);">
+								<a class="box_news" style="cursor: pointer;" data-toggle="modal" data-target=".blogPostModal" ng-click="GetBlogPostDetailData(BlogPost.index); ChangeClassNameDispStatus();">
 									<figure><img src="img/blog/{{BlogPost.imgUrl}}" alt="{{Post.title}}">
 										<figcaption><strong>{{BlogPost.date.day}}</strong>{{BlogPost.date.month.name.substring(0,3)}}
 										</figcaption>
@@ -2143,51 +2157,9 @@
 								</a>
 							</div>
 							<!-- /box_news -->
-							<!-- <div class="col-lg-6">
-								<a class="box_news" href="#0">
-									<figure><img src="img/news_home_2.jpg" alt="">
-										<figcaption><strong>28</strong>Dec</figcaption>
-									</figure>
-									<ul>
-										<li>Jhon Doe</li>
-										<li>20.11.2017</li>
-									</ul>
-									<h4>Duo eius postea suscipit ad</h4>
-									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-								</a>
-							</div> -->
-							<!-- /box_news -->
-							<!-- <div class="col-lg-6">
-								<a class="box_news" href="#0">
-									<figure><img src="img/news_home_3.jpg" alt="">
-										<figcaption><strong>28</strong>Dec</figcaption>
-									</figure>
-									<ul>
-										<li>Luca Robinson</li>
-										<li>20.11.2017</li>
-									</ul>
-									<h4>Elitr mandamus cu has</h4>
-									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-								</a>
-							</div> -->
-							<!-- /box_news -->
-							<!-- <div class="col-lg-6">
-								<a class="box_news" href="#0">
-									<figure><img src="img/news_home_4.jpg" alt="">
-										<figcaption><strong>28</strong>Dec</figcaption>
-									</figure>
-									<ul>
-										<li>Paula Rodrigez</li>
-										<li>20.11.2017</li>
-									</ul>
-									<h4>Id est adhuc ignota delenit</h4>
-									<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-								</a>
-							</div> -->
-							<!-- /box_news -->
 						</div>
 						<!-- /row -->
-						<p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">View all news</a></p>
+						<p class="btn_home_align"><a href="" class="btn_1 rounded" data-toggle="modal" data-target=".blogPostsList" ng-click="GetBlogPostDetailData();">View all blogs</a></p>
 					</div>
 					<!-- /container -->
 				</div>

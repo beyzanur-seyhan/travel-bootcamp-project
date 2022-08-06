@@ -8,6 +8,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.EnjoyTravel = [];
   $scope.Hotels = [];
   $scope.Adventure = [];
+  $scope.ISearchPost;
 
   $scope.GetData = function () {
     $scope.RestaurantsList = RestaurantsListData;
@@ -22,8 +23,13 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.DisplayTourDetail = function (id) {
     $scope.singleTour = TravelFactory.DisplayTourDetail(Recommend[id]);
   };
+  
   $scope.ViewAllTour = function (id) {
     $scope.TourList = TravelFactory.ViewAllTour(Recommend[id]);
+  };
+
+  $scope.ChangeClassNameDispStatus = function(){
+    $scope.DisplayStatus = "d-none";
   };
 
   $scope.GetRestaurantsData = function (RIndex) {
@@ -31,14 +37,15 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.RestaurantDetail = TravelFactory.DoCombineRestaurantData(RestaurantDetailData[RIndex - 1], RestaurantsListData[RIndex - 1]);
   };
 
-  $scope.GetBlogPostDetailData = function(BIndex){
-    $scope.AsidePostAreaTitle = "Recent Posts";
+  $scope.GetBlogPostDetailData = function (BIndex) {
+    $scope.ISearchPost = "";
     $scope.RecentOrResultPost = [];
+    $scope.AsidePostAreaTitle = "Recent Posts";
     $scope.RecentOrResultPost = BlogPoststData;
-    if(BIndex){
+
+    if (BIndex) {
       $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
-    }
-    $scope.DisplayStatus = "d-none";
+    };
   };
 
   $scope.SetRestaurantPointType = function () {
@@ -64,29 +71,27 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     }
   };
 
-  $scope.ViewSearchResult = function(){
-   if(!$scope.ISearchPost){
-    return;
-   }
-   else{
-    $scope.BlogPostSearchResult = TravelService.DoFindSearchResult($scope.ISearchPost);
-    if(!$scope.BlogPostSearchResult){
-      alert("Search Result: None!");
+  $scope.ViewSearchResult = function () {
+    if (!$scope.ISearchPost) {
       return;
     }
-    else{
-      $scope.ISearchPost = "";
-      $scope.RecentOrResultPost = [$scope.BlogPostSearchResult];
-      $scope.AsidePostAreaTitle = "Result Posts";
-      $scope.RecentLink= "#fc5b62";
-      $scope.DisplayStatus = "";
+    else {
+      $scope.BlogPostSearchResult = TravelService.DoFindSearchResult($scope.ISearchPost);
+      if (!$scope.BlogPostSearchResult) {
+        alert("Search Result: None!");
+        return;
+      }
+      else {
+        $scope.ISearchPost = "";
+        $scope.RecentOrResultPost = [$scope.BlogPostSearchResult];
+        $scope.AsidePostAreaTitle = "Result Posts";
+        $scope.DisplayStatus = "";
+      }
     }
-    
-   }
- };
+  };
 
- $scope.OpenBlogPostResult = function(BIndex){
-  $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
- };
+  $scope.OpenBlogPostResult = function (BIndex) {
+    $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
+  };
 
 });
