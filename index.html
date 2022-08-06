@@ -56,7 +56,7 @@
 		.red{
 			color: red;
 		}
-		.blogPostModal{
+		.blogPostsListModal{
 			padding-right: 17px;
 		}
 	</style>
@@ -1620,8 +1620,8 @@
 			  </div>
 			<!-- End Post Detail Modal -->
 
-			<!-- Start View Blog Posts List Modal -->
-			<div class="modal fade blogPostsList" id="blogPostsList" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<!-- Start Blog Posts List Modal -->
+			<div class="modal fade blogPostsListModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-scrollable">
 				  <div class="modal-content">
 			  
@@ -1686,7 +1686,195 @@
 					</div>
 				</div>
 			  </div>
-			<!-- Start View Blog Posts List Modal -->
+			<!-- End Blog Posts List Modal -->
+
+			<!-- Start Restaurant List Modal -->
+			<div class="modal fade resturantListModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-scrollable">
+				  <div class="modal-content">
+			  
+					  <div class="modal-header">
+						<h5 class="modal-title h4" id="myExtraLargeModalLabel">Extra large modal</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">×</span>
+						</button>
+					  </div>
+					  <div class="modal-body">
+						<main>
+							<div class="filters_listing sticky_horizontal">
+								<div class="container">
+									<ul class="clearfix">
+										<li>
+											<div class="switch-field">
+												<input type="radio" id="all" name="listing_filter" value="all" checked data-filter="*" class="selected">
+												<label for="all">All</label>
+												<input type="radio" id="popular" name="listing_filter" value="popular" data-filter=".popular">
+												<label for="popular">Popular</label>
+												<input type="radio" id="latest" name="listing_filter" value="latest" data-filter=".latest">
+												<label for="latest">Latest</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<!-- /container -->
+							</div>
+							<div class="container margin_60_35">
+								<div class="col-lg-12">
+									<div class="row no-gutters custom-search-input-2 inner">
+										<div class="col-lg-4">
+											<div class="form-group">
+												<input class="form-control" type="text" placeholder="What are you looking for...">
+												<i class="icon_search"></i>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="form-group">
+												<input class="form-control" type="text" placeholder="Where">
+												<i class="icon_pin_alt"></i>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<select class="wide">
+												<option>All Categories</option>	
+												<option>Restaurants</option>
+												<option>Bars</option>
+												<option>Coffee Bars</option>
+											</select>
+										</div>
+										<div class="col-lg-2">
+											<input type="submit" class="btn_search" value="Search">
+										</div>
+									</div>
+									<!-- /row -->
+								</div>
+								<div class="isotope-wrapper">
+									<div class="row">
+										<div class="col-xl-4 col-lg-6 col-md-6 isotope-item popular" ng-repeat="RestaurantList in RestaurantLists">
+											<div class="box_grid">
+												<figure>
+													<a href="#0" class="wish_bt"></a>
+													<a href="restaurant-detail.html"><img src="img/restaurant_1.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>Paris Centre</small>
+												</figure>
+												<div class="wrapper">
+													<h3><a href="restaurant-detail.html">King food</a></h3>
+													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+													<span class="price">From <strong>$54</strong> /per person</span>
+												</div>
+												<ul>
+													<li><i class="ti-eye"></i> 164 views</li>
+													<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></li>
+												</ul>
+											</div>
+										</div>
+										<!-- /box_grid -->
+										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item latest">
+											<div class="box_grid">
+												<figure>
+													<a href="#0" class="wish_bt"></a>
+													<a href="restaurant-detail.html"><img src="img/restaurant_2.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>Paris Centre</small>
+												</figure>
+												<div class="wrapper">
+													<h3><a href="restaurant-detail.html">Catrine</a></h3>
+													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+													<span class="price">From <strong>$124</strong> /per person</span>
+												</div>
+												<ul>
+													<li><i class="ti-eye"></i> 164 views</li>
+													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
+												</ul>
+											</div>
+										</div> -->
+										<!-- /box_grid -->
+										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item popular">
+											<div class="box_grid">
+												<figure>
+													<a href="#0" class="wish_bt"></a>
+													<a href="restaurant-detail.html"><img src="img/restaurant_3.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>Paris Centre</small>
+												</figure>
+												<div class="wrapper">
+													<h3><a href="restaurant-detail.html">Bella Napoli</a></h3>
+													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+													<span class="price">From <strong>$25</strong> /per person</span>
+												</div>
+												<ul>
+													<li><i class="ti-eye"></i> 164 views</li>
+													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
+												</ul>
+											</div>
+										</div> -->
+										<!-- /box_grid -->
+										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item latest">
+											<div class="box_grid">
+												<figure>
+													<a href="#0" class="wish_bt"></a>
+													<a href="restaurant-detail.html"><img src="img/restaurant_4.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>Paris Centre</small>
+												</figure>
+												<div class="wrapper">
+													<h3><a href="restaurant-detail.html">Slow Food</a></h3>
+													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+													<span class="price">From <strong>$45</strong> /per person</span>
+												</div>
+												<ul>
+													<li><i class="ti-eye"></i> 164 views</li>
+													<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>9.0</strong></div></li>
+												</ul>
+											</div>
+										</div> -->
+										<!-- /box_grid -->
+										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item popular">
+											<div class="box_grid">
+												<figure>
+													<a href="#0" class="wish_bt"></a>
+													<a href="restaurant-detail.html"><img src="img/restaurant_5.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>Paris Centre</small>
+												</figure>
+												<div class="wrapper">
+													<h3><a href="restaurant-detail.html">Andrew Fish</a></h3>
+													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+													<span class="price">From <strong>$65</strong> /per person</span>
+												</div>
+												<ul>
+													<li><i class="ti-eye"></i> 164 views</li>
+													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.5</strong></div></li>
+												</ul>
+											</div>
+										</div> -->
+										<!-- /box_grid -->
+										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item latest">
+											<div class="box_grid">
+												<figure>
+													<a href="#0" class="wish_bt"></a>
+													<a href="restaurant-detail.html"><img src="img/restaurant_6.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>Paris Centre</small>
+												</figure>
+												<div class="wrapper">
+													<h3><a href="restaurant-detail.html">Da Alfredo</a></h3>
+													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+													<span class="price">From <strong>$95</strong> /per person</span>
+												</div>
+												<ul>
+													<li><i class="ti-eye"></i> 164 views</li>
+													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.8</strong></div></li>
+												</ul>
+											</div>
+										</div> -->
+										<!-- /box_grid -->
+									</div>
+									<!-- /row -->
+								</div>
+
+								<p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">Load more</a></p>
+							</div>
+						</main>
+					  </div>
+					</div>
+				</div>
+			  </div>
+			<!-- End Restaurant List Modal -->
 
 			<header class="header menu_fixed">
 				<div id="preloader">
@@ -2095,7 +2283,7 @@
 						<div class="main_title_3">
 							<span><em></em></span>
 							<h2>Popular Restaurants</h2>
-							<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+							<p>Restaurants that will make you hungry when you are full.</p>
 						</div>
 						<div class="row">
 							<div class="col-xl-3 col-lg-6 col-md-6" ng-repeat="Restaurant in RestaurantsList | orderBy:'point'" ng-if="Restaurant.point >= 8.5">
@@ -2112,7 +2300,7 @@
 							<!-- /grid_item -->
 						</div>
 						<!-- /row -->
-						<a href="restaurants-grid-isotope.html"><strong>View all ({{RestaurantsList.length}}) <i
+						<a href="" ng-click="GetRestaurantListData(RestaurantsList);" data-toggle="modal" data-target=".resturantListModal"><strong>View all ({{RestaurantsList.length}}) <i
 									class="arrow_carrot-right"></i></strong></a>
 					</section>
 					<!-- /section -->
@@ -2159,7 +2347,7 @@
 							<!-- /box_news -->
 						</div>
 						<!-- /row -->
-						<p class="btn_home_align"><a href="" class="btn_1 rounded" data-toggle="modal" data-target=".blogPostsList" ng-click="GetBlogPostDetailData();">View all blogs</a></p>
+						<p class="btn_home_align"><a href="" class="btn_1 rounded" data-toggle="modal" data-target=".blogPostsListModal" ng-click="GetBlogPostDetailData();">View all blogs</a></p>
 					</div>
 					<!-- /container -->
 				</div>

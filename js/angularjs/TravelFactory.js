@@ -24,6 +24,10 @@ TravelFactoryModule.factory("TravelFactory", function(){
             return BData;
         },
 
+        DoGetRestaurantListData: function(RListData){
+            return RListData;
+        },
+
         DoValidatePointScale: function(){
             var PointType = "";
 
