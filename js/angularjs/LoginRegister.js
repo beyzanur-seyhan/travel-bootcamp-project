@@ -1,5 +1,4 @@
 
-
 function Register(e) {
     event.preventDefault();
 
@@ -59,5 +58,17 @@ function Login(e) {
     }
 
 
+};
+
+function RemoveClass(){
+    var BlackScreen = document.querySelector('.my-mfp-zoom-in');
+    var BlackScreenSecond = document.querySelector('.my-mfp-zoom-in')
+    BlackScreen.classList.remove("mfp-bg", "my-mfp-zoom-in", "mfp-ready");
+
+
+
+
 }
+
+
 
