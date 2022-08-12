@@ -2424,7 +2424,7 @@ video {
   }
 }
 
-.custom-search-input-2 {
+.custom-search-input-2, .restaurant-search {
   background-color: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -2436,14 +2436,14 @@ video {
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.3);
 }
 @media (max-width: 991px) {
-  .custom-search-input-2 {
+  .custom-search-input-2, .restaurant-search {
     background: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
   }
 }
-.custom-search-input-2 input {
+.custom-search-input-2 input, .restaurant-search input {
   border: 0;
   height: 50px;
   padding-left: 15px;
@@ -2451,35 +2451,33 @@ video {
   font-weight: 500;
 }
 @media (max-width: 991px) {
-  .custom-search-input-2 input {
+  .custom-search-input-2 input, .restaurant-search input {
     border: none;
   }
 }
-.custom-search-input-2 input:focus {
+.custom-search-input-2 input:focus, .restaurant-search input:focus {
   box-shadow: none;
   border-right: 1px solid #d2d8dd;
 }
 @media (max-width: 991px) {
-  .custom-search-input-2 input:focus {
+  .custom-search-input-2 input:focus, .restaurant-search input:focus {
     border-right: none;
   }
 }
-.custom-search-input-2 select {
-  display: none;
-}
+
 .custom-search-input-2 .nice-select .current {
   font-weight: 500;
   color: #6f787f;
 }
-.custom-search-input-2 .form-group {
+.custom-search-input-2 .form-group, .restaurant-search .form-group {
   margin: 0;
 }
 @media (max-width: 991px) {
-  .custom-search-input-2 .form-group {
+  .custom-search-input-2 .form-group, .restaurant-search .form-group {
     margin-bottom: 5px;
   }
 }
-.custom-search-input-2 i {
+.custom-search-input-2 i, .restaurant-search i {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -2500,11 +2498,11 @@ video {
   color: #999;
 }
 @media (max-width: 991px) {
-  .custom-search-input-2 i {
+  .custom-search-input-2 i, .restaurant-search i {
     padding-right: 10px;
   }
 }
-.custom-search-input-2 input[type='submit'] {
+.custom-search-input-2 input[type='submit'], .restaurant-search input[type='submit'] {
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -2528,7 +2526,7 @@ video {
   margin-right: -1px;
 }
 @media (max-width: 991px) {
-  .custom-search-input-2 input[type='submit'] {
+  .custom-search-input-2 input[type='submit'], .restaurant-search input[type='submit'] {
     margin: 20px 0 0 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -2536,18 +2534,18 @@ video {
     border-radius: 3px;
   }
 }
-.custom-search-input-2 input[type='submit']:hover {
+.custom-search-input-2 input[type='submit']:hover, .restaurant-search input[type='submit']:hover {
   background-color: #FFC107;
   color: #222;
 }
-.custom-search-input-2.inner {
+.custom-search-input-2.inner, .restaurant-search.inner {
   margin-bottom: 30px;
   -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 991px) {
-  .custom-search-input-2.inner {
+  .custom-search-input-2.inner, .restaurant-search.inner {
     margin: 0 0 20px 0;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

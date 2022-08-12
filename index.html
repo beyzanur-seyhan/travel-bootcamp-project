@@ -56,7 +56,7 @@
 		.red{
 			color: red;
 		}
-		.blogPostsListModal{
+		.blogPostModal, .restaurantModal{
 			padding-right: 17px;
 		}
 	</style>
@@ -68,7 +68,7 @@
 	<div ng-app="TravelApp" ng-controller="TravelController" ng-init="GetData();">
 		<div id="page">
 			<!-- Start Restaurant Detail Modal -->
-			<div class="modal fade restaurantModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" ng-init="SetRestaurantPointType();">
+			<div class="modal fade restaurantModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="z-index: 1051;" aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-scrollable">
 				  <div class="modal-content">
 			  
@@ -133,7 +133,7 @@
 												<div class="col-lg-3">
 													<div id="review_summary">
 														<strong>{{RestaurantDetail.point.toFixed(1)}}</strong>
-														<em>{{RestaurantPointType}}</em>
+														<em>{{RestaurantDetail.point >= 8.5 ? 'Superb' : 'Good'}}</em>
 														<small>Based on {{RestaurantDetail.detail.userReviews.length}} reviews</small>
 													</div>
 												</div>
@@ -211,42 +211,6 @@
 												</div>
 											</div>
 											<!-- /review-box -->
-											<!-- <div class="review-box clearfix">
-												<figure class="rev-thumb"><img src="img/avatar2.jpg" alt="">
-												</figure>
-												<div class="rev-content">
-													<div class="rating">
-														<i class="icon-star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-													</div>
-													<div class="rev-info">
-														Ahsan – April 01, 2016:
-													</div>
-													<div class="rev-text">
-														<p>
-															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
-														</p>
-													</div>
-												</div>
-											</div> -->
-											<!-- /review-box -->
-											<!-- <div class="review-box clearfix">
-												<figure class="rev-thumb"><img src="img/avatar3.jpg" alt="">
-												</figure>
-												<div class="rev-content">
-													<div class="rating">
-														<i class="icon-star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-													</div>
-													<div class="rev-info">
-														Sara – March 31, 2016:
-													</div>
-													<div class="rev-text">
-														<p>
-															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
-														</p>
-													</div>
-												</div>
-											</div> -->
-											<!-- /review-box -->
 										</div>
 										<!-- /review-container -->
 									</section>
@@ -288,7 +252,7 @@
 									<div class="box_detail booking">
 										<div class="price">
 											<span>{{RestaurantDetail.price}}$ <small>person</small></span>
-											<div class="score"><span>{{RestaurantPointType}}<em>{{RestaurantDetail.detail.userReviews.length}} Reviews</em></span><strong>{{RestaurantDetail.point.toFixed(1)}}</strong></div>
+											<div class="score"><span>{{RestaurantDetail.point >= 8.5 ? 'Superb' : 'Good'}}<em>{{RestaurantDetail.detail.userReviews.length}} Reviews</em></span><strong>{{RestaurantDetail.point.toFixed(1)}}</strong></div>
 										</div>
 										
 										<div class="form-group" id="input_date">
@@ -1694,24 +1658,37 @@
 				  <div class="modal-content">
 			  
 					  <div class="modal-header">
-						<h5 class="modal-title h4" id="myExtraLargeModalLabel">Extra large modal</h5>
+						<h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						  <span aria-hidden="true">×</span>
 						</button>
 					  </div>
 					  <div class="modal-body">
 						<main>
+							<section class="hero_in restaurants">
+								<div class="wrapper">
+									<div class="container">
+										<h1 class="fadeInUp"><span></span>Eat &amp; Drink</h1>
+									</div>
+								</div>
+							</section>
 							<div class="filters_listing sticky_horizontal">
 								<div class="container">
 									<ul class="clearfix">
 										<li>
-											<div class="switch-field">
-												<input type="radio" id="all" name="listing_filter" value="all" checked data-filter="*" class="selected">
+											<div class="switch-field" ng-init="RestaurantCategories = ['All', 'Popular', 'Latest']">
+												<label ng-repeat="Category in RestaurantCategories">
+													{{Category}}
+													<input type="radio" id="{{Category.toLowerCase()}}" name="listing_filter" value="{{Category.toLowerCase()}}" ng-click="GetCategoryRestaurants(Category.toLowerCase());">
+												</label>
+												<!-- <input type="radio" id="all" name="listing_filter" value="all" checked class="selected">
 												<label for="all">All</label>
+												
 												<input type="radio" id="popular" name="listing_filter" value="popular" data-filter=".popular">
 												<label for="popular">Popular</label>
+												
 												<input type="radio" id="latest" name="listing_filter" value="latest" data-filter=".latest">
-												<label for="latest">Latest</label>
+												<label for="latest">Latest</label> -->
 											</div>
 										</li>
 									</ul>
@@ -1720,154 +1697,65 @@
 							</div>
 							<div class="container margin_60_35">
 								<div class="col-lg-12">
-									<div class="row no-gutters custom-search-input-2 inner">
+									<div class="row no-gutters restaurant-search inner">
 										<div class="col-lg-4">
 											<div class="form-group">
-												<input class="form-control" type="text" placeholder="What are you looking for...">
+												<input class="form-control" type="text" placeholder="What are you looking for..." ng-model="RestaurantTitle">
 												<i class="icon_search"></i>
 											</div>
 										</div>
 										<div class="col-lg-3">
 											<div class="form-group">
-												<input class="form-control" type="text" placeholder="Where">
+												<input class="form-control" type="text" placeholder="Where" ng-model="RestaurantLocation">
 												<i class="icon_pin_alt"></i>
 											</div>
 										</div>
 										<div class="col-lg-3">
-											<select class="wide">
+											<select class="custom-select h-100 border-0" name="Categories" ng-model="SelectCategory">
+												<option value="">All Categories</option>
+												<option value="restaurants">Restaurants</option>
+												<option value="bars">Bars</option>
+												<option value="coffeeBars">Coffe Bars</option>
+											  </select>
+											<!-- <select class="wide">
 												<option>All Categories</option>	
 												<option>Restaurants</option>
 												<option>Bars</option>
 												<option>Coffee Bars</option>
-											</select>
+											</select> -->
 										</div>
 										<div class="col-lg-2">
-											<input type="submit" class="btn_search" value="Search">
+											<input type="submit" class="btn_search" value="Search" ng-click="FindRestaurantSearchResult();">
 										</div>
 									</div>
 									<!-- /row -->
 								</div>
 								<div class="isotope-wrapper">
 									<div class="row">
-										<div class="col-xl-4 col-lg-6 col-md-6 isotope-item popular" ng-repeat="RestaurantList in RestaurantLists">
+										<div ng-repeat="RestaurantList in RestaurantLists | limitTo:(SetLimitToNewValue()) | orderBy: '-point'" ng-click="GetRestaurantsData(RestaurantList.index);" class="col-xl-4 col-lg-6 col-md-6 isotope-item" style="cursor: pointer;" data-toggle="modal" data-target=".restaurantModal">
 											<div class="box_grid">
 												<figure>
-													<a href="#0" class="wish_bt"></a>
-													<a href="restaurant-detail.html"><img src="img/restaurant_1.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-													<small>Paris Centre</small>
+													<a href="" class="wish_bt" id="WishlistLiked-{{RestaurantList.index}}" ng-click="ToggleWishListClassName(RestaurantList.index);"></a>
+													<a href=""><img src="img/{{RestaurantList.imgUrl}}" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+													<small>{{RestaurantList.location}}</small>
 												</figure>
 												<div class="wrapper">
-													<h3><a href="restaurant-detail.html">King food</a></h3>
-													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-													<span class="price">From <strong>$54</strong> /per person</span>
+													<h3><a href="">{{RestaurantList.title}}</a></h3>
+													<p>{{RestaurantList.desc.slice(0,84)}}</p>
+													<span class="price">From <strong>${{RestaurantList.price}}</strong> /per person</span>
 												</div>
 												<ul>
-													<li><i class="ti-eye"></i> 164 views</li>
-													<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></li>
+													<li><i class="ti-eye"></i> {{RestaurantList.view}} views</li>
+													<li><div class="score"><span>{{RestaurantList.point >= 8.5 ? 'Superb' : 'Good'}}<em>{{RestaurantDetails[$index].userReviews.length ? RestaurantDetails[$index].userReviews.length : 0}} Rewiew</em></span><strong>{{RestaurantList.point.toFixed(1)}}</strong></div></li>
 												</ul>
 											</div>
 										</div>
-										<!-- /box_grid -->
-										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item latest">
-											<div class="box_grid">
-												<figure>
-													<a href="#0" class="wish_bt"></a>
-													<a href="restaurant-detail.html"><img src="img/restaurant_2.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-													<small>Paris Centre</small>
-												</figure>
-												<div class="wrapper">
-													<h3><a href="restaurant-detail.html">Catrine</a></h3>
-													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-													<span class="price">From <strong>$124</strong> /per person</span>
-												</div>
-												<ul>
-													<li><i class="ti-eye"></i> 164 views</li>
-													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
-												</ul>
-											</div>
-										</div> -->
-										<!-- /box_grid -->
-										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item popular">
-											<div class="box_grid">
-												<figure>
-													<a href="#0" class="wish_bt"></a>
-													<a href="restaurant-detail.html"><img src="img/restaurant_3.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-													<small>Paris Centre</small>
-												</figure>
-												<div class="wrapper">
-													<h3><a href="restaurant-detail.html">Bella Napoli</a></h3>
-													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-													<span class="price">From <strong>$25</strong> /per person</span>
-												</div>
-												<ul>
-													<li><i class="ti-eye"></i> 164 views</li>
-													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
-												</ul>
-											</div>
-										</div> -->
-										<!-- /box_grid -->
-										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item latest">
-											<div class="box_grid">
-												<figure>
-													<a href="#0" class="wish_bt"></a>
-													<a href="restaurant-detail.html"><img src="img/restaurant_4.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-													<small>Paris Centre</small>
-												</figure>
-												<div class="wrapper">
-													<h3><a href="restaurant-detail.html">Slow Food</a></h3>
-													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-													<span class="price">From <strong>$45</strong> /per person</span>
-												</div>
-												<ul>
-													<li><i class="ti-eye"></i> 164 views</li>
-													<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>9.0</strong></div></li>
-												</ul>
-											</div>
-										</div> -->
-										<!-- /box_grid -->
-										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item popular">
-											<div class="box_grid">
-												<figure>
-													<a href="#0" class="wish_bt"></a>
-													<a href="restaurant-detail.html"><img src="img/restaurant_5.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-													<small>Paris Centre</small>
-												</figure>
-												<div class="wrapper">
-													<h3><a href="restaurant-detail.html">Andrew Fish</a></h3>
-													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-													<span class="price">From <strong>$65</strong> /per person</span>
-												</div>
-												<ul>
-													<li><i class="ti-eye"></i> 164 views</li>
-													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.5</strong></div></li>
-												</ul>
-											</div>
-										</div> -->
-										<!-- /box_grid -->
-										<!-- <div class="col-xl-4 col-lg-6 col-md-6 isotope-item latest">
-											<div class="box_grid">
-												<figure>
-													<a href="#0" class="wish_bt"></a>
-													<a href="restaurant-detail.html"><img src="img/restaurant_6.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-													<small>Paris Centre</small>
-												</figure>
-												<div class="wrapper">
-													<h3><a href="restaurant-detail.html">Da Alfredo</a></h3>
-													<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-													<span class="price">From <strong>$95</strong> /per person</span>
-												</div>
-												<ul>
-													<li><i class="ti-eye"></i> 164 views</li>
-													<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.8</strong></div></li>
-												</ul>
-											</div>
-										</div> -->
 										<!-- /box_grid -->
 									</div>
 									<!-- /row -->
 								</div>
 
-								<p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">Load more</a></p>
+								<p class="text-center" ng-if="RestaurantLists.length > Limit"><a href="" class="btn_1 rounded add_top_30" ng-click="AdditionToLimitToValue();">Load more</a></p>
 							</div>
 						</main>
 					  </div>
@@ -2286,7 +2174,7 @@
 							<p>Restaurants that will make you hungry when you are full.</p>
 						</div>
 						<div class="row">
-							<div class="col-xl-3 col-lg-6 col-md-6" ng-repeat="Restaurant in RestaurantsList | orderBy:'point'" ng-if="Restaurant.point >= 8.5">
+							<div class="col-xl-3 col-lg-6 col-md-6" ng-repeat="Restaurant in RestaurantsList | limitTo:10 | orderBy:'-point'" ng-if="Restaurant.point >= 8.5">
 								<a ng-click="GetRestaurantsData(Restaurant.index)" class="grid_item" style="cursor: pointer;" data-toggle="modal" data-target=".restaurantModal">
 									<figure>
 										<div class="score"><strong>{{Restaurant.point.toFixed(1)}}</strong></div>
@@ -2300,7 +2188,7 @@
 							<!-- /grid_item -->
 						</div>
 						<!-- /row -->
-						<a href="" ng-click="GetRestaurantListData(RestaurantsList);" data-toggle="modal" data-target=".resturantListModal"><strong>View all ({{RestaurantsList.length}}) <i
+						<a href="" ng-click="GetRestaurantListData(RestaurantsList); SetLimitToInitialValue();" data-toggle="modal" data-target=".resturantListModal"><strong>View all ({{RestaurantsList.length}}) <i
 									class="arrow_carrot-right"></i></strong></a>
 					</section>
 					<!-- /section -->

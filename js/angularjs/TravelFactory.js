@@ -28,21 +28,13 @@ TravelFactoryModule.factory("TravelFactory", function(){
             return RListData;
         },
 
-        DoValidatePointScale: function(){
-            var PointType = "";
-
-            RestaurantsListData.forEach((Restaurant) => {
-                if(Restaurant.point >= 7 && Restaurant.point < 8.5){
-                    PointType = "Good";
-                }
-                else if(Restaurant.point >= 8.5){
-                    PointType = "Superb";
-                }
-                else{
-                    PointType = "Bad";
-                }
-            });
-            return PointType;
+        DoToggleToWishListClassName: function(WishIndex){
+          if(WishIndex.className === "wish_bt"){
+            WishIndex.className += " liked";
+          }
+          else{
+            WishIndex.className = "wish_bt";
+          }
         },
 
         DoCountRatingPoint: function(EndTime){

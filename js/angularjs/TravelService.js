@@ -48,7 +48,7 @@ TravelServiceModule.service("TravelService", function ($http, $q) {
         BlogPostTitle.forEach((titles, index) => {
             titles.forEach(title => {
                 TxtSearch.forEach(txt => {
-                    if (txt.replace("İ","I").toLowerCase() === title.toLowerCase()) {
+                    if (txt.replace("İ", "I").toLowerCase() === title.toLowerCase()) {
                         SearchResult = BlogPoststData[index];
                     }
                 });
@@ -56,4 +56,40 @@ TravelServiceModule.service("TravelService", function ($http, $q) {
         });
         return SearchResult;
     };
+
+    this.DoSetRestaurantList = function (RCategoryName, RestaurantsList) {
+        var RestaurantData = [];
+
+        RestaurantsList.forEach((restaurant) => {
+            if (RCategoryName === "all") {
+                RestaurantData.push(restaurant);
+            }
+            else {
+                if (restaurant.pointType) {
+                    if (restaurant.pointType.indexOf(",") > -1) {
+                        RestaurantData.push(restaurant);
+                    }
+                    if (RCategoryName === restaurant.pointType) {
+                        RestaurantData.push(restaurant);
+                    }
+                }
+            }
+        });
+        return RestaurantData;
+    };
+
+    this.DoGetRestaurantSearchResult = function(RestaurantLists, RestaurantTitle, RestaurantLocation, SelectCategory){  
+        var Restaruant;
+
+        RestaurantLists.forEach((restaurant) => {
+            if(RestaurantTitle.toLowerCase() === restaurant.title.toLowerCase()){
+                if(RestaurantLocation.toLowerCase() === restaurant.location.toLowerCase()){
+                    if(SelectCategory === restaurant.category.toLowerCase()){
+                        Restaruant.push(restaurant);
+                    }
+                }   
+            }
+        });
+        return Restaruant;
+    }
 });
