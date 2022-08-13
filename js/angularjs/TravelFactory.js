@@ -79,9 +79,12 @@ TravelFactoryModule.factory("TravelFactory", function(){
             }
             return RatingPoint;
         },
+      /* ***************** Beyzanur Seyhan End ***************** */
+        
+      DoFindHotelDetailData: function(Iindex){
+          return Iindex;
+        }
     };
-
-    /* ***************** Beyzanur Seyhan End ***************** */
 
 });
 

@@ -10,6 +10,8 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.Hotels = [];
   $scope.Adventure = [];
   $scope.ProductsInCart = [];
+  $scope.HotelDetail = [];
+  $scope.HotelList = [];
   $scope.ISearchPost;
   $scope.Limit = 6;
 
@@ -22,6 +24,8 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.Hotels = Hotels;
     $scope.Adventure = Adventure;
     $scope.RestaurantsList = TravelFactory.DoSetRestaurantPointType(new Date().getFullYear());
+    $scope.HotelDetail = HotelDetails;
+    $scope.HotelList = HotelList;
   };
   
   $scope.DisplayTourDetail = function (id) {
@@ -141,6 +145,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
   };
 
+
   $scope.PurchaseNowProduct = function(CtgryIndex){
     $scope.WantToBuy = TravelFactory.DoGetProductData($scope.RestaurantsList[CtgryIndex - 1], $scope.ProductsInCart);
 
@@ -152,5 +157,10 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   }; 
 
 /* ***************** Beyzanur Seyhan End ***************** */
+
+  $scope.GetHotelDetailData = function (Iindex) {
+    $scope.HotelDetailData = TravelFactory.DoFindHotelDetailData(HotelDetails[Iindex - 1]);
+  };
+
 
 });

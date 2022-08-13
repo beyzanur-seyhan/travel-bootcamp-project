@@ -7207,10 +7207,75 @@ a.social_bt.google:before {
   display: flex;
   align-items: center;
 justify-content: center;
-
-
-
 }
+
+#LoggedinName {
+  background: transparent;
+  color: aqua;
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  transform: translate(0);
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+#LoggedinName::before{
+  content: "";
+  position: absolute;
+  background: aqua;
+  width: 8px;
+  top: 0;
+  bottom: 0;
+  left: -15px;
+  transform: rotate(-16deg);
+  filter: blur(12px);
+}
+
+
+
+#LoggedinName:hover::before{
+  left: calc(100% + 15px);
+  transition: 0.75s;
+}
+
+#LoginEmail{
+  border-radius: 4px;
+  background-color: #f7941d;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #000;
+  margin-bottom: 15px;
+}
+
+#LoginPassword{
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #000;
+  background-color: #f7941d;
+}
+
+
+
+/* #LoginEmail::placeholder{color: #000;}
+#LoginPassword::placeholder{color: #000;} */
+
+.form-box .form__group label{
+  position: absolute;
+  padding: 8px 0;
+  left: 82px;
+  pointer-events: none;
+  transition: 1s;
+}
+
+.form-box .form__group input:focus + label,
+.form-box .form__group input:valid + label {
+  
+  left: 20px;
+  font-size: 12px;
+  color: #cf00e1;
+}
+
 
 /* Magnific popup */
 .mfp-bottom-bar {

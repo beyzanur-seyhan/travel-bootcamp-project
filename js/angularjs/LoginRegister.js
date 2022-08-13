@@ -42,11 +42,18 @@ function Login(e) {
     var user = localStorage.getItem(Email);
     var data = JSON.parse(user);
 
+    var UserLoginData = {
+        Email: Email,
+        Password: Password
+    };
+
     if (user == null) {
         alert("Invalid email or password");
     } else if (Email == data.Email && Password == data.Password) {
         alert("Logged in successfully");
         DisplayUsername();
+        var json = JSON.stringify(UserLoginData);
+        localStorage.setItem(Password, json);
     } else { alert("Invalid email or password"); }
 
     function DisplayUsername() {
@@ -57,18 +64,31 @@ function Login(e) {
         Username.innerText = data.Name;
     }
 
+    
+    
 
 };
 
 function RemoveClass(){
     var BlackScreen = document.querySelector('.my-mfp-zoom-in');
-    var BlackScreenSecond = document.querySelector('.my-mfp-zoom-in')
+    // var BlackScreenSecond = document.querySelector('.mfp-close-btn-in');
     BlackScreen.classList.remove("mfp-bg", "my-mfp-zoom-in", "mfp-ready");
+    };
 
+    // function StayLoggedIn(){
+    //     // document.cookie = `Email=${Email}`;
+    //     // document.cookie = `Password=${Password}`;
+        
+    //     var Username = document.getElementById('LoggedinName');
+    //     var User = localStorage.getItem(Password);
+    //     var Data = JSON.parse(User);
+    //     var RegUser = localStorage.getItem(Email);
+    //     var RegData = JSON.parse(RegUser);
+    //     // if(Data.Email == RegData.Email && Data.Password == RegData.Password){
+    //     //     Username.innerText = RegData.Name;
+            
 
-
-
-}
-
-
-
+    //     // }
+    //     console.log(Data.Email);
+    //     };
+    
