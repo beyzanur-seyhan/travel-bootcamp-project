@@ -9,13 +9,11 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.EnjoyTravel = [];
   $scope.Hotels = [];
   $scope.Adventure = [];
+  $scope.ProductsInCart = [];
   $scope.ISearchPost;
   $scope.Limit = 6;
-  // $scope.Selected = "selected";
-  $scope.CurrentYear = new Date().getFullYear();
 
   $scope.GetData = function () {
-    $scope.RestaurantsList = $scope.SetToRestaurantPointType();
     $scope.RestaurantDetails = RestaurantDetailData;
     $scope.BlogPosts = BlogPoststData;
     $scope.Countries = Countries;
@@ -23,24 +21,9 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.EnjoyTravel = EnjoyTravel;
     $scope.Hotels = Hotels;
     $scope.Adventure = Adventure;
+    $scope.RestaurantsList = TravelFactory.DoSetRestaurantPointType(new Date().getFullYear());
   };
   
-  // Factory'de yer alacak
-  $scope.SetToRestaurantPointType = function(){
-    RestaurantsListData.forEach((restaurant) => {
-      if(restaurant.point >= 8.5 && restaurant.publishedYear === $scope.CurrentYear){
-        restaurant.pointType = "popular, latest";
-      }
-      else if(restaurant.publishedYear === $scope.CurrentYear){
-        restaurant.pointType = "latest";
-      }
-      else if(restaurant.point >= 8.5){
-        restaurant.pointType = "popular";
-      }
-    })
-    return RestaurantsListData;
-  };
-
   $scope.DisplayTourDetail = function (id) {
     $scope.singleTour = TravelFactory.DisplayTourDetail(Recommend[id]);
   };
@@ -48,6 +31,8 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.ViewAllTour = function (id) {
     $scope.TourList = TravelFactory.ViewAllTour(Recommend[id]);
   };
+
+  /* ***************** Beyzanur Seyhan Start ***************** */
 
   $scope.ChangeClassNameDispStatus = function(){
     $scope.DisplayStatus = "d-none";
@@ -74,13 +59,13 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.FindRestaurantSearchResult = function(){
 
     if(!($scope.RestaurantTitle && $scope.RestaurantLocation && $scope.SelectCategory)){
-      alert("Alanlar Boş!");
+      alert("Empty Fields!");
     }
     else{
      $scope.RestaurantSearchResult = TravelService.DoGetRestaurantSearchResult($scope.RestaurantLists, $scope.RestaurantTitle, $scope.RestaurantLocation, $scope.SelectCategory);
 
      if(!$scope.RestaurantSearchResult){
-      alert("Arama Sonucu Yok!");
+      alert("Search Result: None!");
      }
      else{
       $scope.RestaurantLists = $scope.RestaurantSearchResult;
@@ -104,7 +89,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.Limit = 6;
   };
 
-  $scope.GetBlogPostDetailData = function (BIndex) {
+  $scope.GetBlogPostDetailData = function(BIndex){
     $scope.ISearchPost = "";
     $scope.RecentOrResultPost = [];
     $scope.AsidePostAreaTitle = "Recent Posts";
@@ -115,11 +100,11 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     };
   };
 
-  $scope.CountRatingPoint = function (NumRating) {
+  $scope.CountRatingPoint = function(NumRating){
     return TravelFactory.DoCountRatingPoint(NumRating);
   };
 
-  $scope.SubmitUserReview = function (RIndex) {
+  $scope.SubmitUserReview = function(RIndex){
     if (TravelService.DoValidateEmptyFormArea()) {
       return;
     }
@@ -133,7 +118,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     }
   };
 
-  $scope.ViewSearchResult = function () {
+  $scope.ViewSearchResult = function(){
     if (!$scope.ISearchPost) {
       return;
     }
@@ -155,5 +140,17 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.OpenBlogPostResult = function (BIndex) {
     $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
   };
+
+  $scope.PurchaseNowProduct = function(CtgryIndex){
+    $scope.WantToBuy = TravelFactory.DoGetProductData($scope.RestaurantsList[CtgryIndex - 1], $scope.ProductsInCart);
+
+    if(!$scope.WantToBuy){
+      return;
+    }
+
+    $scope.ProductsInCart.push($scope.WantToBuy);
+  }; 
+
+/* ***************** Beyzanur Seyhan End ***************** */
 
 });

@@ -2721,7 +2721,7 @@ video {
   content: "\4b";
 }
 
-.qtyTotal {
+.qtyTotal, .guestTotal {
   background-color: #66676b;
   border-radius: 50%;
   color: #fff;

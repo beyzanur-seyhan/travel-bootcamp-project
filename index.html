@@ -256,12 +256,12 @@
 										</div>
 										
 										<div class="form-group" id="input_date">
-											<input class="form-control" type="text" name="dates" placeholder="When..">
+											<input ng-model="SlctDate" class="form-control" type="text" name="dates" placeholder="When..">
 											<i class="icon_calendar"></i>
 										</div>
 										
 										<div class="panel-dropdown">
-											<a href="#">Guests <span class="qtyTotal">1</span></a>
+											<a href="#">Guests <span class="guestTotal">1</span></a>
 											<div class="panel-dropdown-content right">
 												<div class="qtyButtons">
 													<label>Adults</label>
@@ -284,7 +284,7 @@
 											</div>
 										</div>
 										
-										<a href="cart-1.html" class=" add_top_30 btn_1 full-width purchase">Book now</a>
+										<a href="" class=" add_top_30 btn_1 full-width purchase" ng-click="PurchaseNowProduct(RestaurantDetail.index);">Book now</a>
 										<a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i> Add to wishlist</a>
 										<div class="text-center"><small>No money charged in this step</small></div>
 									</div>
