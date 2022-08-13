@@ -45,6 +45,10 @@ TravelFactoryModule.factory("TravelFactory", function(){
             }
             return RatingPoint;
         },
+
+        DoFindHotelDetailData: function(Iindex){
+          return Iindex;
+        }
     };
 
 });

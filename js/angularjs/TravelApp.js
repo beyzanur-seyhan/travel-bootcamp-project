@@ -9,6 +9,8 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.EnjoyTravel = [];
   $scope.Hotels = [];
   $scope.Adventure = [];
+  $scope.HotelDetail = [];
+  $scope.HotelList = [];
   $scope.ISearchPost;
   $scope.Limit = 6;
   // $scope.Selected = "selected";
@@ -23,6 +25,8 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.EnjoyTravel = EnjoyTravel;
     $scope.Hotels = Hotels;
     $scope.Adventure = Adventure;
+    $scope.HotelDetail = HotelDetails;
+    $scope.HotelList = HotelList;
   };
   
   // Factory'de yer alacak
@@ -154,6 +158,10 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
   $scope.OpenBlogPostResult = function (BIndex) {
     $scope.BlogPostDetail = TravelFactory.DoReturnBlogPostData(BlogPoststData[BIndex - 1]);
+  };
+
+  $scope.GetHotelDetailData = function (Iindex) {
+    $scope.HotelDetailData = TravelFactory.DoFindHotelDetailData(HotelDetails[Iindex - 1]);
   };
 
 });

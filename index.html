@@ -36,6 +36,8 @@
 	<link href="js/modernizr_slider.js" rel="stylesheet">
 
 	<script src="js/angularjs/angular.min.js"></script>
+	<script src="js/angularjs/HotelDetail.js"></script>
+	<script src="js/angularjs/HotelListData.js"></script>
 	<script src="js/angularjs/RetaurantData/RestaurantDetailData.js"></script>
 	<script src="js/angularjs/RetaurantData/RestaurantsListData.js"></script>
 	<script src="js/angularjs/BlogData/BlogPostsData.js"></script>
@@ -56,7 +58,7 @@
 		.red{
 			color: red;
 		}
-		.blogPostModal, .restaurantModal{
+		.blogPostModal, .restaurantModal, .HotelModal, .HotelListModal{
 			padding-right: 17px;
 		}
 	</style>
@@ -67,6 +69,462 @@
 
 	<div ng-app="TravelApp" ng-controller="TravelController" ng-init="GetData();">
 		<div id="page">
+			<!-- Hotel Detail Modal Start -->
+		<div class="modal fade HotelModal" tabindex="-1" role="dialog" style="z-index: 1051;" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" >
+			<div class="modal-dialog modal-xl modal-dialog-scrollable">
+			  <div class="modal-content">
+		  
+				  <div class="modal-header" >
+					<h5 class="modal-title h4" id="myExtraLargeModalLabel">{{HotelDetailData.title}}</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">×</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					
+					<!--/hero_in-->
+			
+					<div class="bg_color_1" >
+						
+						<div class="container margin_60_35" >
+							<div class="row" >
+								<div class="col-lg-8"  >
+									<section id="description" >										
+										<h2>Description</h2>
+										<p>{{HotelDetailData.Description}}</p>
+										<p>Cum et probo menandri. Officiis consulatu pro et, ne sea sale invidunt, sed ut sint <strong>blandit</strong> efficiendi. Atomorum explicari eu qui, est enim quaerendum te. Quo harum viris id. Per ne quando dolore evertitur, pro ad cibo commune.</p>
+										<div class="row">
+											<div class="col-lg-6">
+												<ul class="bullets">
+													<li>Dolorem mediocritatem</li>
+													<li>Mea appareat</li>
+													<li>Prima causae</li>
+													<li>Singulis indoctum</li>
+												</ul>
+											</div>
+											<div class="col-lg-6">
+												<ul class="bullets">
+													<li>Timeam inimicus</li>
+													<li>Oportere democritum</li>
+													<li>Cetero inermis</li>
+													<li>Pertinacia eum</li>
+												</ul>
+											</div>
+										</div>
+										<!-- /row -->
+										<hr>
+										<h3>Instagram photos feed</h3>
+										<div id="instagram-feed-hotel" class="clearfix"></div>
+										<hr>
+										<div class="room_type first">
+											<div class="row">
+												<div class="col-md-4">
+													<img src="{{HotelDetailData.RoomImages[0]}}" class="img-fluid" alt="">
+												</div>
+												<div class="col-md-8">
+													<h4>{{HotelDetailData.RoomTitle[0]}}</h4>
+													<p>{{HotelDetailData.RoomDescription[0]}}</p>
+													<ul class="hotel_facilities">
+														<li><img src="img/hotel_facilites_icon_2.svg" alt="">{{HotelDetailData.RoomSpecs[0]}}</li>
+														<li><img src="img/hotel_facilites_icon_4.svg" alt="">{{HotelDetailData.RoomSpecs[1]}}</li>
+														<li><img src="img/hotel_facilites_icon_5.svg" alt="">{{HotelDetailData.RoomSpecs[2]}}</li>
+														<li><img src="img/hotel_facilites_icon_7.svg" alt="">{{HotelDetailData.RoomSpecs[3]}}</li>
+														<li><img src="img/hotel_facilites_icon_8.svg" alt="">{{HotelDetailData.RoomSpecs[4]}}</li>
+													</ul>
+												</div>
+											</div>
+											<!-- /row -->
+										</div>
+										<!-- /rom_type -->
+										<div class="room_type gray">
+											<div class="row">
+												<div class="col-md-4">
+													<img src="{{HotelDetailData.RoomImages[1]}}" class="img-fluid" alt="">
+												</div>
+												<div class="col-md-8">
+													<h4>{{HotelDetailData.RoomTitle[1]}}</h4>
+													<p>{{HotelDetailData.RoomDescription[1]}}</p>
+													<ul class="hotel_facilities">
+														<li><img src="img/hotel_facilites_icon_3.svg" alt="">{{HotelDetailData.RoomSpecs[5]}}</li>
+														<li><img src="img/hotel_facilites_icon_4.svg" alt="">{{HotelDetailData.RoomSpecs[6]}}</li>
+														<li><img src="img/hotel_facilites_icon_6.svg" alt="">{{HotelDetailData.RoomSpecs[7]}}</li>
+														<li><img src="img/hotel_facilites_icon_7.svg" alt="">{{HotelDetailData.RoomSpecs[8]}}</li>
+														<li><img src="img/hotel_facilites_icon_8.svg" alt="">{{HotelDetailData.RoomSpecs[9]}}</li>
+													</ul>
+												</div>
+											</div>
+											<!-- /row -->
+										</div>
+										<!-- /rom_type -->
+										<div class="room_type last">
+											<div class="row">
+												<div class="col-md-4">
+													<img src="{{HotelDetailData.RoomImages[2]}}" class="img-fluid" alt="">
+												</div>
+												<div class="col-md-8">
+													<h4>{{HotelDetailData.RoomTitle[2]}}</h4>
+													<p>{{HotelDetailData.RoomDescription[2]}}</p>
+													<ul class="hotel_facilities">
+														<li><img src="img/hotel_facilites_icon_3.svg" alt="">{{HotelDetailData.RoomSpecs[10]}}</li>
+														<li><img src="img/hotel_facilites_icon_4.svg" alt="">{{HotelDetailData.RoomSpecs[11]}}</li>
+														<li><img src="img/hotel_facilites_icon_6.svg" alt="">{{HotelDetailData.RoomSpecs[12]}}</li>
+														<li><img src="img/hotel_facilites_icon_7.svg" alt="">{{HotelDetailData.RoomSpecs[13]}}</li>
+														<li><img src="img/hotel_facilites_icon_9.svg" alt="">{{HotelDetailData.RoomSpecs[14]}}</li>
+														<li><img src="img/hotel_facilites_icon_3.svg" alt="">{{HotelDetailData.RoomSpecs[15]}}</li>
+													</ul>
+												</div>
+											</div>
+											<!-- /row -->
+										</div>
+										<!-- /rom_type -->
+										<hr>
+										<h3>Location</h3>
+										<div id="map" class="map map_single add_bottom_30"></div>
+										<!-- End Map -->
+									</section>
+									<!-- /section -->
+								
+									<section id="reviewsModal">
+										<h2>Reviews</h2>
+										<div class="reviews-container">
+											<div class="row">
+												<div class="col-lg-3">
+													<div id="review_summary">
+														<strong>8.5</strong>
+														<em>Superb</em>
+														<small>Based on 4 reviews</small>
+													</div>
+												</div>
+												<div class="col-lg-9">
+													<div class="row">
+														<div class="col-lg-10 col-9">
+															<div class="progress">
+																<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+														</div>
+														<div class="col-lg-2 col-3"><small><strong>5 stars</strong></small></div>
+													</div>
+													<!-- /row -->
+													<div class="row">
+														<div class="col-lg-10 col-9">
+															<div class="progress">
+																<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+														</div>
+														<div class="col-lg-2 col-3"><small><strong>4 stars</strong></small></div>
+													</div>
+													<!-- /row -->
+													<div class="row">
+														<div class="col-lg-10 col-9">
+															<div class="progress">
+																<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+														</div>
+														<div class="col-lg-2 col-3"><small><strong>3 stars</strong></small></div>
+													</div>
+													<!-- /row -->
+													<div class="row">
+														<div class="col-lg-10 col-9">
+															<div class="progress">
+																<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+														</div>
+														<div class="col-lg-2 col-3"><small><strong>2 stars</strong></small></div>
+													</div>
+													<!-- /row -->
+													<div class="row">
+														<div class="col-lg-10 col-9">
+															<div class="progress">
+																<div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+														</div>
+														<div class="col-lg-2 col-3"><small><strong>1 stars</strong></small></div>
+													</div>
+													<!-- /row -->
+												</div>
+											</div>
+											<!-- /row -->
+										</div>
+			
+										<hr>
+			
+										<div class="reviews-container">
+			
+											<div class="review-box clearfix">
+												<figure class="rev-thumb"><img src="img/avatar1.jpg" alt="">
+												</figure>
+												<div class="rev-content">
+													<div class="rating">
+														<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+													</div>
+													<div class="rev-info">
+														Admin – April 03, 2016:
+													</div>
+													<div class="rev-text">
+														<p>
+															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- /review-box -->
+											<div class="review-box clearfix">
+												<figure class="rev-thumb"><img src="img/avatar2.jpg" alt="">
+												</figure>
+												<div class="rev-content">
+													<div class="rating">
+														<i class="icon-star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+													</div>
+													<div class="rev-info">
+														Ahsan – April 01, 2016:
+													</div>
+													<div class="rev-text">
+														<p>
+															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- /review-box -->
+											<div class="review-box clearfix">
+												<figure class="rev-thumb"><img src="img/avatar3.jpg" alt="">
+												</figure>
+												<div class="rev-content">
+													<div class="rating">
+														<i class="icon-star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+													</div>
+													<div class="rev-info">
+														Sara – March 31, 2016:
+													</div>
+													<div class="rev-text">
+														<p>
+															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- /review-box -->
+										</div>
+										<!-- /review-container -->
+									</section>
+									<!-- /section -->
+									<hr>
+			
+										<div class="add-review">
+											<h5>Leave a Review</h5>
+											<form>
+												<div class="row">
+													<div class="form-group col-md-6">
+														<label>Name and Lastname *</label>
+														<input type="text" name="name_review" id="name_review" placeholder="" class="form-control">
+													</div>
+													<div class="form-group col-md-6">
+														<label>Email *</label>
+														<input type="email" name="email_review" id="email_review" class="form-control">
+													</div>
+													<div class="form-group col-md-6">
+														<label>Rating </label>
+														<div class="custom-select-form">
+														<select name="rating_review" id="rating_review" class="wide">
+															<option value="1">1 (lowest)</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5" selected>5 (medium)</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">10 (highest)</option>
+														</select>
+														</div>
+													</div>
+													<div class="form-group col-md-12">
+														<label>Your Review</label>
+														<textarea name="review_text" id="review_text" class="form-control" style="height:130px;"></textarea>
+													</div>
+													<div class="form-group col-md-12 add_top_20">
+														<input type="submit" value="Submit" class="btn_1" id="submit-review">
+													</div>
+												</div>
+											</form>
+										</div>
+								</div>
+								<!-- /col -->
+								
+								<aside class="col-lg-4" id="sidebar">
+									<div class="box_detail booking">
+										<div class="price">
+											<span>{{HotelDetailData.Price}}$ <small>person</small></span>
+											<div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+										</div>
+			
+										<div class="form-group">
+											<input class="form-control" type="text" name="dates" placeholder="When..">
+											<i class="icon_calendar"></i>
+										</div>
+			
+										<div class="panel-dropdown">
+											<a href="#">Guests <span class="qtyTotal">1</span></a>
+											<div class="panel-dropdown-content right">
+												<div class="qtyButtons">
+													<label>Adults</label>
+													<input type="text" name="qtyInput" value="1">
+												</div>
+												<div class="qtyButtons">
+													<label>Childrens</label>
+													<input type="text" name="qtyInput" value="0">
+												</div>
+											</div>
+										</div>
+			
+										<div class="form-group clearfix">
+											<div class="custom-select-form">
+												<select class="wide">
+													<option>Room Type</option>	
+													<option>Single Room</option>
+													<option>Double Room</option>
+													<option>Suite Room</option>
+												</select>
+											</div>
+										</div>
+										<a href="cart-1.html" class=" add_top_30 btn_1 full-width purchase">Purchase</a>
+										<a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i> Add to wishlist</a>
+										<div class="text-center"><small>No money charged in this step</small></div>
+									</div>
+									<ul class="share-buttons">
+										<li><a class="fb-share" href="#0"><i class="social_facebook"></i> Share</a></li>
+										<li><a class="twitter-share" href="#0"><i class="social_twitter"></i> Tweet</a></li>
+										<li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Share</a></li>
+									</ul>
+								</aside>
+							</div>
+							<!-- /row -->
+						</div>
+						<!-- /container -->
+					</div>
+					<!-- /bg_color_1 -->
+				  </div>
+				</div>
+			</div>
+		  </div>
+		<!-- Hotel Detail Modal End -->
+		<!-- Hotel List Modal Start -->
+		<div class="modal fade HotelListModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl modal-dialog-scrollable">
+			  <div class="modal-content">
+		  
+				  <div class="modal-header">
+					<h5 class="modal-title h4" id="myExtraLargeModalLabel">Extra large modal</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">×</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					<section class="hero_in hotels" style="background-image:url(/img/hoteldetail/HotelsandAccommodations.jpg); background-repeat:no-repeat; background-size: cover;">
+						<div class="wrapper">
+							<div class="container">
+								<h1 class="fadeInUp"><span></span>Hotels & Accommodations</h1>
+							</div>
+						</div>
+					</section>
+					<!--/hero_in-->
+					
+					<div class="filters_listing sticky_horizontal">
+						
+						<!-- /container -->
+					</div>
+					<!-- /filters -->
+					
+					<div class="collapse" id="collapseMap">
+						<div id="map" class="map"></div>
+					</div>
+					<!-- End Map -->
+			
+					<div class="container margin_60_35">
+						<div class="box_list" ng-repeat="hotellist in HotelList | orderBy:'-View.Rating'">
+							<div class="row no-gutters">
+								<div class="col-lg-5" >
+									<figure>
+										<small>{{hotellist.Location}}</small>
+										<a class="grid_item" style="cursor: pointer;" data-toggle="modal" data-target=".HotelModal" ng-click="GetHotelDetailData(hotellist.Index);"><img src={{hotellist.Image}} class="img-fluid"  alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+									</figure>
+								</div>
+								<div class="col-lg-7">
+									<div class="wrapper">
+										<a href="#0" class="wish_bt"></a>
+										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+										<h3><a href="hotel-detail.html">{{hotellist.HotelName}}</a></h3>
+										<p>{{hotellist.Description}}}}</p>
+										<span class="price">{{hotellist.Price}}</span>
+									</div>
+									<ul>
+										<li><i class="ti-eye"></i>{{hotellist.View.Count}}</li>
+										<li><div class="score"><span>{{hotellist.View.RatingText}}<em>{{hotellist.View.RatingCount}}</em></span><strong>{{hotellist.View.Rating}}</strong></div></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+					<!-- /container -->
+					<div class="bg_color_1">
+						<div class="container margin_60_35">
+							<div class="row">
+								<div class="col-md-4">
+									<a href="#0" class="boxed_list">
+										<i class="pe-7s-help2"></i>
+										<h4>Need Help? Contact us</h4>
+										<p>Cum appareat maiestatis interpretaris et, et sit.</p>
+									</a>
+								</div>
+								<div class="col-md-4">
+									<a href="#0" class="boxed_list">
+										<i class="pe-7s-wallet"></i>
+										<h4>Payments and Refunds</h4>
+										<p>Qui ea nemore eruditi, magna prima possit eu mei.</p>
+									</a>
+								</div>
+								<div class="col-md-4">
+									<a href="#0" class="boxed_list">
+										<i class="pe-7s-note2"></i>
+										<h4>Quality Standards</h4>
+										<p>Hinc vituperata sed ut, pro laudem nonumes ex.</p>
+									</a>
+								</div>
+							</div>
+							<!-- /row -->
+						</div>
+						<!-- /container -->
+					</div>
+				  </div>
+				</div>
+			</div>
+		  </div>
+		</div>
+		<!-- Hotel List Modal End -->
+		<!-- Enjoy a GREAT Travel Modal Start -->
+		<div class="modal fade EnjoyModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl modal-dialog-scrollable">
+			  <div class="modal-content" ng-repeat="travel in EnjoyTravel">
+		  
+				  <div class="modal-header">
+					<h5 class="modal-title h4" id="myExtraLargeModalLabel">{{travel.ReadmoreText}}</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">×</span>
+					</button>
+				  </div>
+				  <div class="modal-body" >
+					<div>
+						<img src={{travel.ReadmoreImage}} alt="" style="width: 100%;">
+					</div>
+					
+				  </div>
+				</div>
+			</div>
+		  </div>
+		<!-- Enjoy a GREAT Travel Modal End -->
+
+
 			<!-- Start Restaurant Detail Modal -->
 			<div class="modal fade restaurantModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="z-index: 1051;" aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -1791,118 +2249,27 @@
 				<nav id="menu" class="main-menu">
 					<ul>
 						<li><span><a href="#0">Home</a></span>
-							<ul>
-								<li><a href="index.html">Home version 1</a></li>
-								<li><a href="index-2.html">Home version 2</a></li>
-								<li><a href="index-3.html">Home version 3</a></li>
-								<li><a href="index-4.html">Home version 4</a></li>
-								<li><a href="index-5.html">Home version 5</a></li>
-								<li><a href="index-6.html">With Cookie bar (EU law)</a></li>
-								<li><a href="index-7.html">Home version 7</a></li>
-							</ul>
+							
 						</li>
 						<li><span><a href="#0">Tours</a></span>
-							<ul>
-								<li>
-									<span><a href="#0">Tours grid</a></span>
-									<ul>
-										<li><a href="tours-grid-isotope.html">Tours grid isotope</a></li>
-										<li><a href="tours-grid-sidebar.html">Tours grid sidebar</a></li>
-										<li><a href="tours-grid-sidebar-2.html">Tours grid sidebar 2</a></li>
-										<li><a href="tours-grid.html">Tours grid simple</a></li>
-									</ul>
-								</li>
-								<li>
-									<span><a href="#0">Tours list</a></span>
-									<ul>
-										<li><a href="tours-list-isotope.html">Tours list isotope</a></li>
-										<li><a href="tours-list-sidebar.html">Tours list sidebar</a></li>
-										<li><a href="tours-list-sidebar-2.html">Tours list sidebar 2</a></li>
-										<li><a href="tours-list.html">Tours list simple</a></li>
-									</ul>
-								</li>
-								<li><a href="tour-detail.html">Tour detail</a></li>
-							</ul>
+							
 						</li>
 						<li><span><a href="#0">Hotels</a></span>
-							<ul>
-								<li>
-									<span><a href="#0">Hotel grid</a></span>
-									<ul>
-										<li><a href="hotels-grid-isotope.html">Hotel grid isotope</a></li>
-										<li><a href="hotels-grid-sidebar.html">Hotel grid sidebar</a></li>
-										<li><a href="hotels-grid-sidebar-2.html">Hotel grid sidebar 2</a></li>
-										<li><a href="hotels-grid.html">Hotel grid simple</a></li>
-									</ul>
-								</li>
-								<li>
-									<span><a href="#0">Hotel list</a></span>
-									<ul>
-										<li><a href="hotels-list-isotope.html">Hotel list isotope</a></li>
-										<li><a href="hotels-list-sidebar.html">Hotel list sidebar</a></li>
-										<li><a href="hotels-list-sidebar-2.html">Hotel list sidebar 2</a></li>
-										<li><a href="hotels-list.html">Hotel list simple</a></li>
-									</ul>
-								</li>
-								<li><a href="hotel-detail.html">Hotel detail</a></li>
-							</ul>
+							
 						</li>
 						<li><span><a href="#0">Eat &amp; Drink</a></span>
-							<ul>
-								<li>
-									<span><a href="#0">Restaurant grid</a></span>
-									<ul>
-										<li><a href="restaurants-grid-isotope.html">Restaurant grid isotope</a></li>
-										<li><a href="restaurants-grid-sidebar.html">Restaurant grid sidebar</a></li>
-										<li><a href="restaurants-grid-sidebar-2.html">Restaurant grid sidebar 2</a></li>
-										<li><a href="restaurants-grid.html">Restaurant grid simple</a></li>
-									</ul>
-								</li>
-								<li>
-									<span><a href="#0">Restaurant list</a></span>
-									<ul>
-										<li><a href="restaurants-list-isotope.html">Restaurant list isotope</a></li>
-										<li><a href="restaurants-list-sidebar.html">Restaurant list sidebar</a></li>
-										<li><a href="restaurants-list-sidebar-2.html">Restaurant list sidebar 2</a></li>
-										<li><a href="restaurants-list.html">Restaurant list simple</a></li>
-									</ul>
-								</li>
-								<li><a href="restaurant-detail.html">Restaurant detail</a></li>
-							</ul>
+							
 						</li>
 						<li><span><a href="adventure.html">Adventure</a></span></li>
 						<li><span><a href="#0">Pages</a></span>
-							<ul>
-								<li><a href="about.html">About</a></li>
-								<li><a href="media-gallery.html">Media gallery</a></li>
-								<li><a href="help.html">Help Section</a></li>
-								<li><a href="faq.html">Faq Section</a></li>
-								<li><a href="wishlist.html">Wishlist page</a></li>
-								<li><a href="contacts.html">Contacts</a></li>
-								<li><a href="login.html">Login</a></li>
-								<li><a href="register.html">Register</a></li>
-								<li><a href="blog.html">Blog</a></li>
+							<ul>							
+								<li><a href="contacts.html">Contacts</a></li>								
+								<li><a href="" data-toggle="modal" data-target=".blogPostsListModal" ng-click="GetBlogPostDetailData();">Blogs</a></li>
 							</ul>
 						</li>
-						<li><span><a href="#0">Extra</a></span>
-							<ul>
-								<li><a href="menu-options.html">Menu Position Options</a></li>
-								<li><a href="tour-detail-singlemonth-datepicker.html">Single month Datepicker</a></li>
-								<li><a href="404.html">404 Error page</a></li>
-								<li><a href="cart-1.html">Cart page 1</a></li>
-								<li><a href="cart-2.html">Cart page 2</a></li>
-								<li><a href="cart-3.html">Cart page 3</a></li>
-								<li><a href="pricing-tables.html">Responsive pricing tables</a></li>
-								<li><a href="coming_soon/index.html">Coming soon</a></li>
-								<li><a href="invoice.html">Invoice</a></li>
-								<li><a href="icon-pack-1.html">Icon pack 1</a></li>
-								<li><a href="icon-pack-2.html">Icon pack 2</a></li>
-								<li><a href="icon-pack-3.html">Icon pack 3</a></li>
-								<li><a href="icon-pack-4.html">Icon pack 4</a></li>
-								<li><a href="hamburgers.html">Animated Hamburgers</a></li>
-							</ul>
-						</li>
+						
 						<li><p id="LoggedinName">Please Login</p></li>
+						
 					</ul>
 				</nav>
 
@@ -2148,23 +2515,23 @@
 							<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
 						</div>
 						<div class="row">
-							<div class="col-xl-3 col-lg-6 col-md-6" ng-repeat="Hotel in Hotels">
-								<a href="hotel-detail.html" class="grid_item">
+							<div class="col-xl-3 col-lg-6 col-md-6" ng-repeat="hotels in HotelDetail  | orderBy:'-point' | limitTo:4">
+								<a class="grid_item" style="cursor: pointer;" data-toggle="modal" data-target=".HotelModal" ng-click="GetHotelDetailData(hotels.Index);">
 									<figure>
-										<div class="score"><strong ng-bind="Hotel.point"></strong></div>
-										<img src="{{Hotel.imgUrl}}" class="img-fluid" alt="">
+										<div class="score"><strong ng-bind="hotels.point"></strong></div>
+										<img src="{{hotels.imgUrl}}" class="img-fluid" alt="">
 										<div class="info">
 											<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i
 													class="icon_star"></i><i class="icon_star"></i></div>
-											<h3 ng-bind="Hotel.title"></h3>
+											<h3 ng-bind="hotels.title"></h3>
 										</div>
 									</figure>
 								</a>
 							</div>
 						</div>
 						<!-- /row -->
-						<a href="hotels-grid-isotope.html"><strong>View all (157) <i
-									class="arrow_carrot-right"></i></strong></a>
+						<a style="cursor: pointer;" data-toggle="modal" data-target=".HotelListModal" color="red"><strong>View all (157) <i
+							class="arrow_carrot-right"></i></strong></a>
 					</section>
 					<!-- /section -->
 					<section class="add_bottom_45">
@@ -2360,18 +2727,21 @@
 			<div class="small-dialog-header">
 				<h3>Sign In</h3>
 			</div>
-				<div class="sign-in-wrapper" >
-					
-					<div class="container" id="LoginForm">
+				<div class="sign-in-wrapper" >				
+					<div class="form-box" id="LoginForm">
 						<form onsubmit="Login();" >
-							<input type="email" name="Email" placeholder="Email" id="LoginEmail"> <br>
-							<input type="password" name="Email" placeholder="Password" id="LoginPassword"> <br> <br>
-				
-				
+							<div class="form__group">
+								<input type="email" name="Email"  id="LoginEmail" cursor="text" class="form__input"  required> 
+								<label for="email">Email</label>						
+							</div>
+							<div class="form__group">
+								<input type="password" name="Email"  id="LoginPassword" class="form__input"  required> 
+								<label for="password">Password</label> <br> <br>
+							</div>								
 							<button type="submit" class="btn_1 full-width">Submit</button>
-						</form>
+						</form>								
 				
-				
+						
 					</div>
 					
 					
