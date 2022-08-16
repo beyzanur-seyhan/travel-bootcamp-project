@@ -91,5 +91,43 @@ TravelServiceModule.service("TravelService", function ($http, $q) {
             }
         });
         return Restaruant;
-    }
+    };
+
+    this.DoCalcProductQuantity = function(ProductsInCart){
+        
+        var TotalQuantity = 0;
+
+        if(ProductsInCart.length){
+            ProductsInCart.forEach((product) => {
+                TotalQuantity += product.price;
+            })
+        }
+
+        return TotalQuantity;
+    };
+
+    this.DoApplyCouponCode = function(ProductsInCart, RandomCouponCode){
+
+        var CouponCode = document.getElementById("CouponCode");
+        
+        if(!(ProductsInCart.length)){
+            alert("There are no products in the cart!");
+            return;
+        }
+        if(!(CouponCode.value)){
+            alert("Coupon code is empty!");
+            return;
+        }
+        if((+(CouponCode.value)) !== RandomCouponCode){
+            alert(`Please enter the correct coupon code --> ${RandomCouponCode}`);
+            return;
+        }
+        
+        alert("Coupon applied successfully!");
+
+        ProductsInCart.forEach((product) => {
+            product.price  = (product.price * 15) / 100;
+            return product;
+        });
+    };
 });

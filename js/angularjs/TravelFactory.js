@@ -1,6 +1,9 @@
 var TravelFactoryModule = angular.module("TravelFactoryModule", []);
 TravelFactoryModule.factory("TravelFactory", function(){
-    
+
+    var OutGoingDate = document.getElementById("WhenDate");
+    var OutGoingTime = document.getElementById("appt-time");
+
     return{
 
         DisplayTourDetail: function (id) {
@@ -31,16 +34,27 @@ TravelFactoryModule.factory("TravelFactory", function(){
             return RListData;
         },
 
-        DoGetProductData: function(CtgryData, ProductsInCart){
+        DoGetProductData: function(CtgryData, ProductsInCart, TotalGuest, TotalAdult, TotalChildren){
+
+          if(!(OutGoingDate.value && OutGoingTime.value && TotalGuest)){
+            alert("Empty Field!");
+            return;
+          }
+
           var CategoryData = {
             index: CtgryData.index,
             title: CtgryData.title,
             price: CtgryData.price,
-            imgUrl: CtgryData.imgUrl
+            imgUrl: CtgryData.imgUrl,
+            adult: TotalAdult,
+            children: TotalChildren,
+            outGoingDate: OutGoingDate.value,
+            outGoingTime: OutGoingTime.value
           };
 
           ProductsInCart.forEach((product) => {
             if(CategoryData.index === product.index){
+              alert("You Have Same The Product!")
               CategoryData = "";
             }
           });
@@ -79,6 +93,13 @@ TravelFactoryModule.factory("TravelFactory", function(){
             }
             return RatingPoint;
         },
+
+        DoSetDefaultValue: function(){
+          
+          OutGoingDate.value = "";
+          OutGoingTime.value = "";
+        },
+
       /* ***************** Beyzanur Seyhan End ***************** */
         
       DoFindHotelDetailData: function(Iindex){

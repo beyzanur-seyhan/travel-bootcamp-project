@@ -2666,11 +2666,11 @@ video {
   visibility: visible;
 }
 
-.qtyButtons {
+.qtyButtons, .guests {
   display: flex;
   margin: 0 0 13px 0;
 }
-.qtyButtons input {
+.qtyButtons input, .guests input {
   outline: 0;
   font-size: 16px;
   font-size: 1rem;
@@ -2687,7 +2687,7 @@ video {
   display: inline-block;
   border: none !important;
 }
-.qtyButtons label {
+.qtyButtons label, .guests label {
   font-weight: 500;
   line-height: 36px;
   padding-right: 15px;
@@ -2717,8 +2717,43 @@ video {
   content: "\4c";
 }
 
-.qtyDec:before {
+.btnInc::before {
+  content: "\4c";
+}
+
+.qtyDec:before{
   content: "\4b";
+}
+
+.btnDesc::before {
+  content: "\4b";
+}
+
+button.btnInc, button.btnDesc {
+  outline: none;
+  border: none !important;
+}
+
+button.btnInc:focus, button.btnDesc:focus{
+  border: 2px solid gray !important;
+}
+
+.btnInc, .btnDesc {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 28px;
+  font-size: 1.75rem;
+  background-color: #f2f2f2;
+  -webkit-text-stroke: 1px #f2f2f2;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: 'ElegantIcons';
 }
 
 .qtyTotal, .guestTotal {
@@ -4095,6 +4130,7 @@ section#reviews {
 .booking select {
   display: none;
 }
+
 .booking .panel-dropdown {
   background-color: #fff;
   font-size: 14px;

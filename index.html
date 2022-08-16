@@ -58,9 +58,21 @@
 		.red{
 			color: red;
 		}
-		.blogPostModal, .restaurantModal, .HotelModal, .HotelListModal{
+		
+		.blogPostModal, .restaurantModal, .HotelModal, .HotelListModal, .CheckOutModal{
 			padding-right: 17px;
 		}
+
+		.productInfo {
+			font-size: 10px;
+		}
+
+		@media screen and (min-width: 501px){
+			.productInfo {
+				margin-left: 86px;
+			}
+		}
+		
 	</style>
 
 </head>
@@ -579,7 +591,9 @@
 										</div>
 										<hr>
 										<h3>Location</h3>
-										<div id="map" class="map map_single add_bottom_30"></div>
+										<div id="map" class="map map_single add_bottom_30">
+											<iframe id="RestaurantLocation" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+										</div>
 										<!-- End Map -->
 									</section>
 									<!-- /section -->
@@ -713,33 +727,31 @@
 											<div class="score"><span>{{RestaurantDetail.point >= 8.5 ? 'Superb' : 'Good'}}<em>{{RestaurantDetail.detail.userReviews.length}} Reviews</em></span><strong>{{RestaurantDetail.point.toFixed(1)}}</strong></div>
 										</div>
 										
-										<div class="form-group" id="input_date">
-											<input ng-model="SlctDate" class="form-control" type="text" name="dates" placeholder="When..">
+										<div class="form-group input dates scroll-fix" id="input_date">
+											<input ng-model="Date" id="WhenDate" class="form-control" type="text" name="dates" placeholder="When.." autocomplete="off">
 											<i class="icon_calendar"></i>
 										</div>
 										
 										<div class="panel-dropdown">
-											<a href="#">Guests <span class="guestTotal">1</span></a>
+											<a href="#">Guests <span id="totalGuest" class="guestTotal">{{TotalGuest}}</span></a>
 											<div class="panel-dropdown-content right">
-												<div class="qtyButtons">
+												<div class="guests">
 													<label>Adults</label>
-													<input type="text" name="qtyInput" value="1">
+													<button ng-click="DescCountAdult();" class="btnDesc"></button>
+													<input ng-model="TotalAdult" id="totalAdult" type="text" name="qtyInput" value="{{TotalAdult}}">
+													<button ng-click="IncCountAdult();" class="btnInc"></button>
 												</div>
-												<div class="qtyButtons">
+												<div class="guests">
 													<label>Childrens</label>
-													<input type="text" name="qtyInput" value="0">
+													<button ng-click="DescCountChildren();" class="btnDesc"></button>
+													<input type="text" id="totalChildren" name="qtyInput" value="{{TotalChildren}}">
+													<button ng-click="IncCountChildren();" class="btnInc"></button>
 												</div>
 											</div>
 										</div>
 										
-										<div class="form-group clearfix">
-											<div class="custom-select-form">
-											<select class="wide">
-												<option>Time</option>	
-												<option>Lunch</option>
-												<option>Dinner</option>
-											</select>
-											</div>
+										<div class="form-group">
+											<input ng-model="Time" class="w-100" style="outline: none; padding: 15px; border: 1px solid #d2d8dd" type="time" id="appt-time" name="appt-time" min="09:00" max="18:00">
 										</div>
 										
 										<a href="" class=" add_top_30 btn_1 full-width purchase" ng-click="PurchaseNowProduct(RestaurantDetail.index);">Book now</a>
@@ -2169,7 +2181,7 @@
 											</div>
 										</div>
 										<div class="col-lg-3">
-											<select class="custom-select h-100 border-0" name="Categories" ng-model="SelectCategory">
+											<select class="form-control form-control-lg h-100 border-0" name="Categories" ng-model="SelectCategory">
 												<option value="">All Categories</option>
 												<option value="restaurants">Restaurants</option>
 												<option value="bars">Bars</option>
@@ -2222,22 +2234,273 @@
 			  </div>
 			<!-- End Restaurant List Modal -->
 
-			<header class="header menu_fixed">
+			<!-- Start Checkout Modal -->
+			 
+			<div class="modal fade" ng-class="ProductsInCart.length ? 'CheckOutModal' : 'DisCheckOutModal'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="z-index: 1051;" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-scrollable">
+				  <div class="modal-content">
+			  
+					  <div class="modal-header">
+						<h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">×</span>
+						</button>
+					  </div>
+					  <div class="modal-body">
+						<main>
+							<div class="hero_in cart_section last">
+								<div class="wrapper">
+									<div class="container">
+										<div class="bs-wizard clearfix">
+											<div class="bs-wizard-step">
+												<div class="text-center bs-wizard-stepnum">Your cart</div>
+												<div class="progress">
+													<div class="progress-bar"></div>
+												</div>
+												<a href="#0" class="bs-wizard-dot"></a>
+											</div>
+					
+											<div class="bs-wizard-step">
+												<div class="text-center bs-wizard-stepnum">Payment</div>
+												<div class="progress">
+													<div class="progress-bar"></div>
+												</div>
+												<a href="#0" class="bs-wizard-dot"></a>
+											</div>
+					
+											<div class="bs-wizard-step active">
+												<div class="text-center bs-wizard-stepnum">Finish!</div>
+												<div class="progress">
+													<div class="progress-bar"></div>
+												</div>
+												<a href="#0" class="bs-wizard-dot"></a>
+											</div>
+										</div>
+										<!-- End bs-wizard -->
+										<div id="confirm">
+											<h4>Order completed!</h4>
+											<p>You'll receive a confirmation email at mail@example.com</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/hero_in-->
+						</main>
+					  </div>
+					</div>
+				</div>
+			  </div>
+
+			<!-- End Checkout Modal -->
+
+			<!-- Start Cart List Modal -->
+			<div class="modal fade CartListModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-scrollable">
+				  <div class="modal-content">
+			  
+					  <div class="modal-header">
+						<h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">×</span>
+						</button>
+					  </div>
+					  <div class="modal-body">
+						<main>
+							<div class="hero_in cart_section">
+								<div class="wrapper">
+									<div class="container">
+										<div class="bs-wizard clearfix">
+											<div class="bs-wizard-step active" style="width: 50%;">
+												<div class="text-center bs-wizard-stepnum">Your cart</div>
+												<div class="progress">
+													<div class="progress-bar"></div>
+												</div>
+												<a href="#0" class="bs-wizard-dot"></a>
+											</div>
+					
+											<!-- <div class="bs-wizard-step disabled">
+												<div class="text-center bs-wizard-stepnum">Payment</div>
+												<div class="progress">
+													<div class="progress-bar"></div>
+												</div>
+												<a href="#0" class="bs-wizard-dot"></a>
+											</div> -->
+					
+											<div class="bs-wizard-step disabled">
+												<div class="text-center bs-wizard-stepnum">Finish!</div>
+												<div class="progress">
+													<div class="progress-bar"></div>
+												</div>
+												<a href="#0" class="bs-wizard-dot"></a>
+											</div>
+										</div>
+										<!-- End bs-wizard -->
+									</div>
+								</div>
+							</div>
+							<!--/hero_in-->
+					
+							<div class="bg_color_1">
+								<div class="container margin_60_35" style="padding-bottom: 0;">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="box_cart">
+											<table class="table table-striped cart-list">
+												<thead>
+													<tr>
+														<th>
+															Item
+														</th>
+														<th>
+															Discount
+														</th>
+														<th>
+															Price
+														</th>
+														<th>
+															Actions
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="ProductInCart in ProductsInCart track by $index">
+														<td>
+															<div class="thumb_cart" style="margin-top: 23px;">
+																<img src="img/{{ProductInCart.imgUrl}}" alt="Image" style="width: 95px;">
+															</div>
+															<div>
+																<span class="item_cart">{{ProductInCart.title}}</span>
+																<div class="productInfo">
+																	<div>Date: <span>{{ProductInCart.outGoingDate}}</span></div>
+																	<div>Time: <span>{{ProductInCart.outGoingTime}}</span></div>
+																	<div>Adults: <span>{{ProductInCart.adult}}</span></div>
+																	<div>Childs: <span>{{ProductInCart.children}}</span></div>
+																</div>
+															</div>
+															
+														</td>
+														<td>
+															0%
+														</td>
+														<td>
+															<strong>{{ProductInCart.price}}$</strong>
+														</td>
+														<td class="options" style="width:5%; text-align:center;">
+															<a href="" ng-click="RemoveProductFromList($index);"><i class="icon-trash"></i></a>
+														</td>
+													</tr>
+													<!-- <tr>
+														<td>
+															<div class="thumb_cart">
+																<img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_2.jpg" alt="Image">
+															</div>
+															<span class="item_cart">At deseruisse scriptorem</span>
+														</td>
+														<td>
+															0%
+														</td>
+														<td>
+															<strong>15,50$</strong>
+														</td>
+														<td class="options" style="width:5%; text-align:center;">
+															<a href="#"><i class="icon-trash"></i></a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="thumb_cart">
+																<img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_3.jpg" alt="Image">
+															</div>
+															<span class="item_cart">Ea vel semper quaerendum</span>
+														</td>
+														<td>
+															0%
+														</td>
+														<td>
+															<strong>24,71$</strong>
+														</td>
+														<td class="options" style="width:5%; text-align:center;">
+															<a href="#"><i class="icon-trash"></i></a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="thumb_cart">
+																<img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_4.jpg" alt="Image">
+															</div>
+															<span class="item_cart">Ei has exerci graecis</span>
+														</td>
+														<td>
+															0%
+														</td>
+														<td>
+															<strong>24,71$</strong>
+														</td>
+														<td class="options" style="width:5%; text-align:center;">
+															<a href="#"><i class="icon-trash"></i></a>
+														</td>
+													</tr> -->
+												</tbody>
+											</table>
+											<div class="cart-options clearfix">
+												<div class="float-left">
+													<div class="apply-coupon">
+														<div class="form-group">
+															<input ng-model="CouponCode" id="CouponCode" type="text" name="coupon-code" placeholder="Your Coupon Code" class="form-control">
+														</div>
+														<div class="form-group">
+															<button ng-click="ApplyCouponCode();" type="button" class="btn_1 outline">Apply Coupon</button>
+														</div>
+													</div>
+													<div  style="font-weight: 500; margin: 26px 0px; color: #0054a6;">
+														<span>Coupon Code</span> 
+														<i class="icon-right-hand"></i> 
+														<span>{{RandomCouponCode}}</span></div>
+													</div>
+											</div>
+											<div id="total_cart">
+												Total <span class="float-right">{{AdditionProductQuantity()}}$</span>
+											</div>
+											<a href="" class="btn_1 full-width purchase" data-toggle="modal" data-target=".CheckOutModal">Checkout</a>
+											<div class="text-center"><small>No money charged in this step</small></div>
+											<!-- /cart-options -->
+										</div>
+										</div>
+										<!-- /col -->
+										
+										<!-- <aside class="col-lg-4" id="sidebar">
+											<div class="box_detail">
+												<div id="total_cart">
+													Total <span class="float-right">69.00$</span>
+												</div>
+												<a href="cart-2.html" class="btn_1 full-width purchase">Checkout</a>
+												<div class="text-center"><small>No money charged in this step</small></div>
+											</div>
+										</aside> -->
+									</div>
+									<!-- /row -->
+								</div>
+								<!-- /container -->
+							</div>
+							<!-- /bg_color_1 -->
+						</main>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<!-- End Cart List Modal -->
+
+			<header class="navbar sticky-top navbar-light bg-dark" style="padding: 12px 44px;">
 				<div id="preloader">
 					<div data-loader="circle-side"></div>
 				</div><!-- /Page Preload -->
 				<div id="logo">
 					<a href="index.html">
 						<img src="img/logo.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
-						<img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt=""
-							class="logo_sticky">
+						<!-- <img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt=""
+							class="logo_sticky"> -->
 					</a>
 				</div>
-				<ul id="top_menu">
-					<li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li>
-					<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In" onclick="ChangeIdBackToNormal()">Sign In</a></li>
-					<li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
-				</ul>
 				<!-- /top_menu -->
 				<a href="#menu" class="btn_mobile">
 					<div class="hamburger hamburger--spin" id="hamburger">
@@ -2271,7 +2534,14 @@
 						<li><p id="LoggedinName">Please Login</p></li>
 						
 					</ul>
+					<ul id="top_menu">
+						<li><a href="" class="cart-menu-btn" title="Cart" data-toggle="modal" data-target=".CartListModal"><strong style="bottom: -7px; right: -1px; background-color: darkcyan;">{{ProductsInCart.length}}</strong></a></li>
+						<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In" onclick="ChangeIdBackToNormal()">Sign In</a></li>
+						<li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
+					</ul>
 				</nav>
+
+				
 
 			</header>
 			<!-- /header -->
@@ -2821,10 +3091,10 @@
 	<script src="js/map_tours.js"></script>
 	<script src="js/infobox.js"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
 
-
-	<!--  -->
-	<script>
+	<!-- Beyzanur Seyhan: Bu Kısmı Yorum Satırına Aldım. Çünkü üstteki daterangepicker script'i ile çakışıyordu. -->
+	<!-- <script>
 		$(function () {
 			$('input[name="dates"]').daterangepicker({
 				autoUpdateInput: false,
@@ -2840,7 +3110,7 @@
 				$(this).val('');
 			});
 		});
-	</script>
+	</script> -->
 	<!-- FlexSlider -->
 
 	<script defer src="js/jquery.flexslider.js"></script>
