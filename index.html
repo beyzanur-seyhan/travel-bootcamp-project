@@ -46,6 +46,7 @@
 	<script src="js/angularjs/Adventure.js"></script>
 	<script src="js/angularjs/HotelsData.js"></script>
 	<script src="js/angularjs/EnjoyTravel.js"></script>
+	<script src="js/angularjs/WishList.js"></script>
 	<script src="js/angularjs/TravelService.js"></script>
 	<script src="js/angularjs/TravelFactory.js"></script>
 	<script src="js/angularjs/TravelApp.js"></script>
@@ -86,8 +87,10 @@
 			<div class="modal-dialog modal-xl modal-dialog-scrollable">
 			  <div class="modal-content">
 		  
-				  <div class="modal-header" >
-					<h5 class="modal-title h4" id="myExtraLargeModalLabel">{{HotelDetailData.title}}</h5>
+				<div class="modal-header" >
+					<h5 class="modal-title h4" id="HotelDescMore">{{HotelDetailData.title}}</h5>
+					<img class="d-none" id="itemSource" src="{{HotelDetailData.imgUrl}}" alt="">
+					<h5 class="d-none" id="HotelTime">{{HotelDetailData.time}}</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					  <span aria-hidden="true">×</span>
 					</button>
@@ -103,31 +106,43 @@
 								<div class="col-lg-8"  >
 									<section id="description" >										
 										<h2>Description</h2>
-										<p>{{HotelDetailData.Description}}</p>
-										<p>Cum et probo menandri. Officiis consulatu pro et, ne sea sale invidunt, sed ut sint <strong>blandit</strong> efficiendi. Atomorum explicari eu qui, est enim quaerendum te. Quo harum viris id. Per ne quando dolore evertitur, pro ad cibo commune.</p>
+										<p id="HotelDesc">{{HotelDetailData.Description}}</p>
+										<p >{{HotelDetailData.DescriptionMore}}</p>
 										<div class="row">
 											<div class="col-lg-6">
 												<ul class="bullets">
-													<li>Dolorem mediocritatem</li>
-													<li>Mea appareat</li>
-													<li>Prima causae</li>
-													<li>Singulis indoctum</li>
+													<li ng-repeat="Specs in HotelDetailData.Specs | limitTo: 4:0">{{Specs}}</li>
+													
 												</ul>
 											</div>
 											<div class="col-lg-6">
 												<ul class="bullets">
-													<li>Timeam inimicus</li>
-													<li>Oportere democritum</li>
-													<li>Cetero inermis</li>
-													<li>Pertinacia eum</li>
+													<li ng-repeat="Specs in HotelDetailData.Specs | limitTo: 4:4">{{Specs}}</li>
 												</ul>
 											</div>
 										</div>
 										<!-- /row -->
 										<hr>
 										<h3>Instagram photos feed</h3>
-										<div id="instagram-feed-hotel" class="clearfix"></div>
-										<hr>
+										<div class="grid">
+											<ul class="magnific-gallery" style="text-align: start;">
+												<li ng-repeat="Images in HotelDetailData.Images | limitTo: 3">
+													<figure>
+														<img src="{{Images}}" alt="">
+														<figcaption>
+															<div class="caption-content">
+																<a href="{{Images}}" data-effect="mfp-zoom-in">
+																	<i class="pe-7s-albums"></i>
+																	<p>Open Photo</p>
+																</a>
+															</div>
+														</figcaption>
+													</figure>
+												</li>
+
+												
+											</ul>
+										</div>
 										<div class="room_type first">
 											<div class="row">
 												<div class="col-md-4">
@@ -137,11 +152,8 @@
 													<h4>{{HotelDetailData.RoomTitle[0]}}</h4>
 													<p>{{HotelDetailData.RoomDescription[0]}}</p>
 													<ul class="hotel_facilities">
-														<li><img src="img/hotel_facilites_icon_2.svg" alt="">{{HotelDetailData.RoomSpecs[0]}}</li>
-														<li><img src="img/hotel_facilites_icon_4.svg" alt="">{{HotelDetailData.RoomSpecs[1]}}</li>
-														<li><img src="img/hotel_facilites_icon_5.svg" alt="">{{HotelDetailData.RoomSpecs[2]}}</li>
-														<li><img src="img/hotel_facilites_icon_7.svg" alt="">{{HotelDetailData.RoomSpecs[3]}}</li>
-														<li><img src="img/hotel_facilites_icon_8.svg" alt="">{{HotelDetailData.RoomSpecs[4]}}</li>
+														<li ng-repeat="item in HotelDetail.RoomSpecs"><img src="img/hotel_facilites_icon_2.svg" alt="">{{item}}</li>
+														
 													</ul>
 												</div>
 											</div>
@@ -322,53 +334,42 @@
 									<!-- /section -->
 									<hr>
 			
-										<div class="add-review">
-											<h5>Leave a Review</h5>
-											<form>
-												<div class="row">
-													<div class="form-group col-md-6">
-														<label>Name and Lastname *</label>
-														<input type="text" name="name_review" id="name_review" placeholder="" class="form-control">
-													</div>
-													<div class="form-group col-md-6">
-														<label>Email *</label>
-														<input type="email" name="email_review" id="email_review" class="form-control">
-													</div>
-													<div class="form-group col-md-6">
-														<label>Rating </label>
-														<div class="custom-select-form">
-														<select name="rating_review" id="rating_review" class="wide">
-															<option value="1">1 (lowest)</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5" selected>5 (medium)</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10 (highest)</option>
-														</select>
-														</div>
-													</div>
-													<div class="form-group col-md-12">
-														<label>Your Review</label>
-														<textarea name="review_text" id="review_text" class="form-control" style="height:130px;"></textarea>
-													</div>
-													<div class="form-group col-md-12 add_top_20">
-														<input type="submit" value="Submit" class="btn_1" id="submit-review">
-													</div>
+									<div class="add-review">
+										<h5>Leave a Review</h5>
+										<form>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label>Name and Lastname <span class="LblFormAreaHotel">*</span></label>
+													<input type="text" name="name_review" id="name_review_hotel" class="form-control form-review-hotel" ng-model="IFullNameHotel">
 												</div>
-											</form>
-										</div>
+												<div class="form-group col-md-6">
+													<label>Email <span class="LblFormAreaHotel">*</span></label>
+													<input type="email" name="email_review" id="email_review_hotel" class="form-control form-review-hotel" ng-model="IEmailHotel">
+												</div>
+												<div class="form-group col-md-6">
+														<label for="exampleFormControlSelect1">Rating <span class="LblFormAreaHotel">*</span></label>
+														<select class="form-control form-review-hotel" id="exampleFormControlSelect1-hotel" ng-model="SlctRatingHotel">
+															<option ng-repeat="Opt in [1,2,3,4,5,6,7,8,9,10]" value="{{Opt}}">{{Opt === 1 ? Opt + ' (lowest)' : Opt === 5 ? Opt + ' (medium)' : Opt === 10 ? Opt + ' (highest)' : Opt}}</option>
+														</select>
+												</div>
+												<div class="form-group col-md-12">
+													<label>Your Review <span class="LblFormAreaHotel">*</span></label>
+													<textarea name="review_text" id="review_text" class="form-control form-review-hotel" style="height:130px;" ng-model="TxtCommentHotel"></textarea>
+												</div>
+												<div class="form-group col-md-12 add_top_20">
+													<input type="submit" value="Submit" class="btn_1" id="submit-review-hotel" ng-click="SubmitUserReviewHotel(HotelDetailData.Index);">
+												</div>
+											</div>
+										</form>
+									</div>
 								</div>
 								<!-- /col -->
 								
 								<aside class="col-lg-4" id="sidebar">
 									<div class="box_detail booking">
 										<div class="price">
-											<span>{{HotelDetailData.Price}}$ <small>person</small></span>
-											<div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+											<span id="HotelPrice">{{HotelDetailData.Price}}$ <small>person</small></span>
+											<div class="score" ><span>Good<em>350 Reviews</em></span ><strong><span id="itemPoint" style="font-size: larger;">{{HotelDetailData.point}}</span></strong></div>
 										</div>
 			
 										<div class="form-group">
@@ -401,7 +402,7 @@
 											</div>
 										</div>
 										<a href="cart-1.html" class=" add_top_30 btn_1 full-width purchase">Purchase</a>
-										<a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i> Add to wishlist</a>
+										<a class="btn_1 full-width outline wishlist" style="cursor: pointer;" data-toggle="modal" data-target=".WishlistModal" ng-click="AddWishlistItem();"><i class="icon_heart"  ></i> Add to wishlist</a>
 										<div class="text-center"><small>No money charged in this step</small></div>
 									</div>
 									<ul class="share-buttons">
@@ -520,14 +521,28 @@
 			  <div class="modal-content" ng-repeat="travel in EnjoyTravel">
 		  
 				  <div class="modal-header">
-					<h5 class="modal-title h4" id="myExtraLargeModalLabel">{{travel.ReadmoreText}}</h5>
+					
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					  <span aria-hidden="true">×</span>
 					</button>
 				  </div>
-				  <div class="modal-body" >
-					<div>
-						<img src={{travel.ReadmoreImage}} alt="" style="width: 100%;">
+				  <div class="modal-body" style="background-image: url(img/hoteldetail/nighth.jpg); background-repeat: no-repeat; background-size: cover;">
+					
+					<section class="hero_in hotels" style="background-image:url({{travel.ReadmoreImage}}); background-repeat:no-repeat; background-size: cover; border-radius: 10px;" >
+						<div class="wrapper">
+							<div class="container">
+								<h1 class="fadeInUp"><span></span>Enjoy a Great Travel With Us</h1>
+							</div>
+						</div>
+						
+					</section>
+					<br><hr>
+					<div class="ReadmoreCon">
+						<ul>
+							<li class="ReadmoreList"><p class="ReadmoreText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos sequi tenetur totam esse, iste vitae enim cumque nihil praesentium veritatis at inventore illo et distinctio ad alias illum voluptates consectetur delectus nemo. Ratione obcaecati consectetur amet. Rem, amet incidunt. Placeat?</p><img src="{{travel.ReadmoreExtraImages[0]}}" alt="" class="ReadmoreImages"></li>
+							<li class="ReadmoreList"><p class="ReadmoreText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos sequi tenetur totam esse, iste vitae enim cumque nihil praesentium veritatis at inventore illo et distinctio ad alias illum voluptates consectetur delectus nemo. Ratione obcaecati consectetur amet. Rem, amet incidunt. Placeat?</p><img src="{{travel.ReadmoreExtraImages[1]}}" alt="" class="ReadmoreImages"></li>
+							<li class="ReadmoreList"><p class="ReadmoreText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos sequi tenetur totam esse, iste vitae enim cumque nihil praesentium veritatis at inventore illo et distinctio ad alias illum voluptates consectetur delectus nemo. Ratione obcaecati consectetur amet. Rem, amet incidunt. Placeat?</p><img src="{{travel.ReadmoreExtraImages[2]}}" alt="" class="ReadmoreImages"></li>
+						</ul>
 					</div>
 					
 				  </div>
@@ -543,7 +558,8 @@
 				  <div class="modal-content">
 			  
 					  <div class="modal-header">
-						<h5 class="modal-title h4" id="myExtraLargeModalLabel">{{RestaurantDetail.title}}</h5>
+						<h5 class="modal-title h4" id="RestTitle">{{RestaurantDetail.title}}</h5>
+						<img class="d-none" id="RestPics" src="img/{{RestaurantDetail.imgUrl}}">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						  <span aria-hidden="true">×</span>
 						</button>
@@ -554,7 +570,7 @@
 								<div class="col-lg-8">
 									<section id="description">
 										<h2>Description</h2>
-										<p>{{RestaurantDetail.detail.desc}}</p>
+										<p id="RestDesc">{{RestaurantDetail.detail.desc}}</p>
 										<div class="row">
 											<div class="col-lg-6">
 												<ul class="bullets">
@@ -604,7 +620,8 @@
 											<div class="row">
 												<div class="col-lg-3">
 													<div id="review_summary">
-														<strong>{{RestaurantDetail.point.toFixed(1)}}</strong>
+														<h5 class="d-none" id="RestTime">{{RestaurantDetail.time}}</h5>
+														<strong id="RestPoint">{{RestaurantDetail.point.toFixed(1)}}</strong>
 														<em>{{RestaurantDetail.point >= 8.5 ? 'Superb' : 'Good'}}</em>
 														<small>Based on {{RestaurantDetail.detail.userReviews.length}} reviews</small>
 													</div>
@@ -723,7 +740,7 @@
 								<aside class="col-lg-4" id="sidebar">
 									<div class="box_detail booking">
 										<div class="price">
-											<span>{{RestaurantDetail.price}}$ <small>person</small></span>
+											<span id="RestPrice">{{RestaurantDetail.price}}$ <small>person</small></span>
 											<div class="score"><span>{{RestaurantDetail.point >= 8.5 ? 'Superb' : 'Good'}}<em>{{RestaurantDetail.detail.userReviews.length}} Reviews</em></span><strong>{{RestaurantDetail.point.toFixed(1)}}</strong></div>
 										</div>
 										
@@ -755,7 +772,7 @@
 										</div>
 										
 										<a href="" class=" add_top_30 btn_1 full-width purchase" ng-click="PurchaseNowProduct(RestaurantDetail.index);">Book now</a>
-										<a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i> Add to wishlist</a>
+										<a class="btn_1 full-width outline wishlist" style="cursor: pointer;" data-toggle="modal" data-target=".WishlistModal" ng-click="AddWishlistItemRestaurant();"></i> Add to wishlist</a>
 										<div class="text-center"><small>No money charged in this step</small></div>
 									</div>
 									<ul class="share-buttons">
@@ -1620,8 +1637,7 @@
 														</div>
 													</div>
 													<a href="cart-1.html" class="btn_1 full-width purchase">Purchase</a>
-													<a href="wishlist.html" class="btn_1 full-width outline wishlist"><i
-															class="icon_heart"></i> Add to wishlist</a>
+													
 													<div class="text-center"><small>No money charged in this
 															step</small></div>
 												</div>
@@ -2234,6 +2250,101 @@
 			  </div>
 			<!-- End Restaurant List Modal -->
 
+			  <!-- Wishlist Modal Start -->
+		  <div class="modal fade WishlistModal" tabindex="-1" role="dialog" style="z-index: 1051;" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl modal-dialog-scrollable">
+			  <div class="modal-content">
+		  
+				  <div class="modal-header">
+					<h5 class="modal-title h4" id="myExtraLargeModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">×</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					<main>
+		
+						<section class="hero_in tours">
+							<div class="wrapper">
+								<div class="container">
+									<h1 class="fadeInUp"><span></span>Your Wishlist</h1>
+								</div>
+							</div>
+						</section>
+						<!--/hero_in-->
+				
+						<div class="container margin_60_35">
+							
+						<div class="wrapper-grid">
+							<div class="row" >
+								<div class="col-xl-4 col-lg-6 col-md-6 " ng-repeat="item in WishList track by $index">
+									<div class="box_grid" >
+										<figure>
+											<a href="#0" class="wish_bt liked" id="WishListRemove" ng-click="RemoveItemFromWishList($index);"></a>
+											<a class="grid_item" style="cursor: pointer;"  data-target=".HotelModal"><img src="{{item.pic}}" class="img-fluid" alt="" width="800" height="533"></a>
+											
+											<div class="read_more"><span>Read more</span></div>
+										</figure>
+										<div class="wrapper">
+											<h3><a href="tour-detail.html">{{item.title}}</a></h3>
+											<p>{{item.description}}</p>
+											<span class="price">From <strong>${{item.price}}</strong> /per person</span>
+										</div>
+										<ul>
+											<li><i class="icon_clock_alt"></i> {{item.time}}</li>
+											<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>{{item.point}}</strong></div></li>
+										</ul>
+									</div>
+								</div>
+								
+								<!-- /box_grid -->
+							</div>
+							<!-- /row -->
+							</div>
+							<!-- /isotope-wrapper -->
+										
+						</div>
+						<!-- /container -->
+						
+						<div class="bg_color_1">
+							<div class="container margin_60_35">
+								<div class="row">
+									<div class="col-md-4">
+										<a href="#0" class="boxed_list">
+											<i class="pe-7s-help2"></i>
+											<h4>Need Help? Contact us</h4>
+											<p>Cum appareat maiestatis interpretaris et, et sit.</p>
+										</a>
+									</div>
+									<div class="col-md-4">
+										<a href="#0" class="boxed_list">
+											<i class="pe-7s-wallet"></i>
+											<h4>Payments</h4>
+											<p>Qui ea nemore eruditi, magna prima possit eu mei.</p>
+										</a>
+									</div>
+									<div class="col-md-4">
+										<a href="#0" class="boxed_list">
+											<i class="pe-7s-note2"></i>
+											<h4>Cancel Policy</h4>
+											<p>Hinc vituperata sed ut, pro laudem nonumes ex.</p>
+										</a>
+									</div>
+								</div>
+								<!-- /row -->
+							</div>
+							<!-- /container -->
+						</div>
+						<!-- /bg_color_1 -->
+						
+					</main>
+					<!--/main-->
+				  </div>
+				</div>
+			</div>
+		  </div>
+		  <!-- Wishlist Modal End -->
+
 			<!-- Start Checkout Modal -->
 			 
 			<div class="modal fade" ng-class="ProductsInCart.length ? 'CheckOutModal' : 'DisCheckOutModal'" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="z-index: 1051;" aria-hidden="true">
@@ -2581,33 +2692,7 @@
 				<div class="search_container">
 					<div class="container">
 						<div class="col-lg-12">
-							<div class="row no-gutters custom-search-input-2 inner">
-								<div class="col-lg-4">
-									<div class="form-group">
-										<input class="form-control" type="text"
-											placeholder="What are you looking for...">
-										<i class="icon_search"></i>
-									</div>
-								</div>
-								<div class="col-lg-3">
-									<div class="form-group">
-										<input class="form-control" type="text" placeholder="Where">
-										<i class="icon_pin_alt"></i>
-									</div>
-								</div>
-								<div class="col-lg-3">
-									<select class="wide">
-										<option>All Categories</option>
-										<option>Churches</option>
-										<option>Historic</option>
-										<option>Museums</option>
-										<option>Walking tours</option>
-									</select>
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" class="btn_search" value="Search">
-								</div>
-							</div>
+							
 							<!-- /row -->
 						</div>
 						<!-- /custom-search-input-2 -->
@@ -2627,7 +2712,7 @@
 							data-target=".bd-example-modal-xl-0">
 							<div class="box_grid">
 								<figure>
-									<a href="#" class="wish_bt"></a>
+									
 									<a href="#"><img src="{{Recommend[0].src}}" class="img-fluid" alt="" width="800"
 											height="533">
 										<div class="read_more"><span>Read more</span></div>
@@ -2656,7 +2741,7 @@
 							data-target=".bd-example-modal-xl-0">
 							<div class="box_grid">
 								<figure>
-									<a href="#" class="wish_bt"></a>
+									
 									<a href="#"><img src="{{Recommend[1].src}}" class="img-fluid" alt="" width="800"
 											height="533">
 										<div class="read_more"><span>Read more</span></div>
@@ -2685,7 +2770,7 @@
 							data-target=".bd-example-modal-xl-0">
 							<div class="box_grid">
 								<figure>
-									<a href="#" class="wish_bt"></a>
+									
 									<a href="#"><img src="{{Recommend[2].src}}" class="img-fluid" alt2"" width="800"
 											height="533">
 										<div class="read_more"><span>Read more</span></div>
@@ -2714,7 +2799,7 @@
 							data-target=".bd-example-modal-xl-0">
 							<div class="box_grid">
 								<figure>
-									<a href="#" class="wish_bt"></a>
+									
 									<a href="#"><img src="{{Recommend[3].src}}" class="img-fluid" alt="" width="800"
 											height="533">
 										<div class="read_more"><span>Read more</span></div>
@@ -2743,7 +2828,7 @@
 							data-target=".bd-example-modal-xl-0">
 							<div class="box_grid">
 								<figure>
-									<a href="#" class="wish_bt"></a>
+									
 									<a href="#"><img src="{{Recommend[4].src}}" class="img-fluid" alt="" width="800"
 											height="533">
 										<div class="read_more"><span>Read more</span></div>
@@ -2892,7 +2977,7 @@
 									<div class="box_1">
 										<h3>{{travel.Title}}</h3>
 										<p>{{travel.Text}}</p>
-										<a href="#0" class="btn_1 rounded">Read more</a>
+										<a class="btn_1 rounded" data-toggle="modal" data-target=".EnjoyModal" >Read more</a>
 									</div>
 								</div>
 							</div>

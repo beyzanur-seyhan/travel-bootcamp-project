@@ -12,6 +12,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
   $scope.ProductsInCart = [];
   $scope.HotelDetail = [];
   $scope.HotelList = [];
+  $scope.WishList = [];
   $scope.ISearchPost;
   $scope.Limit = 6;
   $scope.TotalGuest = 0;
@@ -29,6 +30,7 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.RestaurantsList = TravelFactory.DoSetRestaurantPointType(new Date().getFullYear());
     $scope.HotelDetail = HotelDetails;
     $scope.HotelList = HotelList;
+    $scope.WishList = WishList;
     $scope.RandomCouponCode = Math.floor(Math.random() * 2000);
   };
   
@@ -212,10 +214,59 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 //  $scope.AdditionProductQuantity();
 
 /* ***************** Beyzanur Seyhan End ***************** */
-
+/* ***************** Furkan Akkaya Start ***************** */
   $scope.GetHotelDetailData = function (Iindex) {
     $scope.HotelDetailData = TravelFactory.DoFindHotelDetailData(HotelDetails[Iindex - 1]);
   };
 
+  $scope.SubmitUserReviewHotel = function (RIndex) {
+    if (TravelService.DoValidateEmptyFormAreaHotel()) {
+      return;
+    }
+    else {
+      TravelService.DoAddUserReviewHotel(RIndex, $scope.IFullNameHotel, $scope.IEmailHotel, $scope.TxtCommentHotel, $scope.SlctRatingHotel);
 
+      $scope.IFullNameHotel = ""
+      $scope.IEmailHotel = "";
+      $scope.SlctRatingHotel = undefined;
+      $scope.TxtCommentHotel = "";
+    }
+  };
+
+  $scope.AddWishlistItem = function (IIndex) {
+
+      var item = document.getElementById("HotelDesc").innerText;
+      var item = item.replace('Prima causae admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate pertinacia eum at. Cum et probo menandri. Officiis consulatu pro et, ne sea sale invidunt, sed ut sint blandit efficiendi. Atomorum explicari eu qui, est enim quaerendum te. Quo harum viris id. Per ne quando dolore evertitur, pro ad cibo commune.', '');
+      var itemDescMore = document.getElementById("HotelDescMore").innerText;
+      var itemSource = document.getElementById("itemSource").src;
+      var hotelPrice = document.getElementById("HotelPrice").innerText;
+      var hotelPrice = hotelPrice.replace('person', '');
+      var itemPoint = document.getElementById("itemPoint").innerText;
+      var itemPoint = parseFloat(itemPoint);
+      var itemTime = document.getElementById("HotelTime").innerText;
+      TravelService.DoAddItemToWishList(IIndex, item, itemDescMore, itemSource, hotelPrice, itemPoint, itemTime);
+      console.log(itemTime);  
+    };
+
+    $scope.AddWishlistItemRestaurant = function (IIndex) {
+
+      var item = document.getElementById("RestDesc").innerText;
+      var item = item.replace('Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.Cum et probo menandri. Officiis consulatu pro et, ne sea sale invidunt, sed ut sint blandit efficiendi. Atomorum explicari eu qui, est enim quaerendum te. Quo harum viris id. Per ne quando dolore evertitur, pro ad cibo commune.', '');
+      var itemDescMore = document.getElementById("RestTitle").innerText;
+      var itemSource = document.getElementById("RestPics").src;
+      var hotelPrice = document.getElementById("RestPrice").innerText;
+      var hotelPrice = hotelPrice.replace('person', '');
+      var itemPoint = document.getElementById("RestPoint").innerText;
+      var itemPoint = parseFloat(itemPoint);
+      var itemTime = document.getElementById("RestTime").innerText;
+      TravelService.DoAddItemToWishList(IIndex, item, itemDescMore, itemSource, hotelPrice, itemPoint, itemTime);
+      console.log(itemTime);  
+    };
+
+    $scope.RemoveItemFromWishList = function(E){
+      var Wishlist = document.getElementById("WishListRemove");
+          Wishlist.parentElement.parentElement.parentElement.remove();
+    };
+
+/* ***************** Furkan Akkaya End ***************** */
 });

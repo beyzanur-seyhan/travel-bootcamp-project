@@ -7239,6 +7239,36 @@ a.social_bt.google:before {
 
 /* Login */
 
+.ReadmoreText{
+  position: absolute;
+  color: white;
+  font-size: larger;
+  width: 700px;
+  height: 100px;
+  margin-left: 350px;
+  margin-top: 75px;
+}
+
+.ReadmoreImages{
+  width: 300px;
+  height: 200px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  margin-left: 25px;
+}
+
+.ReadmoreList{
+  border: 8px solid #945870;
+  border-radius: 10px;
+  margin-top: 25px;
+  
+}
+
+.ReadmoreCon{
+  margin-top: 80px;
+}
+
 #LoginForm {
   display: flex;
   align-items: center;

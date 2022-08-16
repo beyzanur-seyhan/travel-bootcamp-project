@@ -21,7 +21,9 @@ TravelFactoryModule.factory("TravelFactory", function(){
                 detail: RDetail, 
                 title: RList.title, 
                 point: RList.point, 
-                price: RList.price 
+                price: RList.price,
+                imgUrl: RList.imgUrl,
+                time: RList.time, 
             };
             return RestaurantData;         
         },
