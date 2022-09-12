@@ -1,6 +1,5 @@
 # TRAVEL BOOTCAMP PROJECT 🗺️
 
-![View]()
 
 ▶️ [What I Learned](#what-i-learned)
 
@@ -36,32 +35,6 @@
 ## Used Languages Or Technologies
 - Angular.js
 
-## Parts From The Project
-
-### Tours
-<br>
-
-<br><br>
-
-### Hotels
-<br>
-
-<br> <br>
-
-### Restaurant
-<br>
-
-<br> <br>
-
-### Blogs
-<br>
-
-<br> <br>
-
-### Wishlist
-<br>
-
-<br> <br>
 
 ## Getting Started
 
