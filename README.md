@@ -11,18 +11,15 @@
 
 ▶️ [Contact Me](#contact-me)
 
-...
+<img src="https://raw.githubusercontent.com/beyzanur-seyhan/travel-bootcamp-project/'main'/view.jpg" width=30% />
 
-...
-
-...
 
 - This project contain the holiday travel booking website. 
 - It is a team project. I led the team.
 
 ▶️ [Live Demo](https://beyzanur-seyhan.github.io/travel-bootcamp-project/) ▶ Check out how the project looks
 
-- The theme of this project is prepared before UI Kit template. ([Panagea])(https://themeforest.net/item/panagea-travel-and-tours-listings-template/21957086)
+- The theme of this project is prepared before UI Kit template. [Panagea](https://themeforest.net/item/panagea-travel-and-tours-listings-template/21957086)
 - It consists of a single page. Other pages are opened in the form of pop-ups.
 
 ## What I Learned
