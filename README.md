@@ -22,7 +22,7 @@
 
 ▶️ [Live Demo](https://beyzanur-seyhan.github.io/travel-bootcamp-project/) ▶ Check out how the project looks
 
-- The theme of this project is prepared before UI Kit template. ([Panagea](https://themeforest.net/item/panagea-travel-and-tours-listings-template/21957086)
+- The theme of this project is prepared before UI Kit template. ([Panagea])(https://themeforest.net/item/panagea-travel-and-tours-listings-template/21957086)
 - It consists of a single page. Other pages are opened in the form of pop-ups.
 
 ## What I Learned
@@ -40,7 +40,7 @@
 
 - Clone this repository with git clone
 
-![Clone-Repository](https://raw.githubusercontent.com/beyzanur-seyhan/e-commerce-web-page/main/readme-files/views/clone-repo.jpg)
+![Clone-Repository](https://raw.githubusercontent.com/beyzanur-seyhan/travel-bootcamp-project/'main'/git-clone.jpg)
 
 <u>Type the following into the terminal:</u>
 
