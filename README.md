@@ -1,6 +1,6 @@
 # TRAVEL BOOTCAMP PROJECT 🗺️
 
-![View](https://raw.githubusercontent.com/beyzanur-seyhan/e-commerce-web-page/main/readme-files/views/start.gif)
+![View]()
 
 ▶️ [What I Learned](#what-i-learned)
 
@@ -40,27 +40,27 @@
 
 ### Tours
 <br>
-<img src="https://github.com/beyzanur-seyhan/e-commerce-web-page/blob/main/readme-files/views/add-to-cart.gif?raw=true" width="70%">
+
 <br><br>
 
 ### Hotels
 <br>
-<img src="https://github.com/beyzanur-seyhan/e-commerce-web-page/blob/main/readme-files/views/signIn-register.gif?raw=true" width="70%">
+
 <br> <br>
 
 ### Restaurant
 <br>
-<img src="https://github.com/beyzanur-seyhan/e-commerce-web-page/blob/main/readme-files/views/signIn-register.gif?raw=true" width="70%">
+
 <br> <br>
 
 ### Blogs
 <br>
-<img src="https://github.com/beyzanur-seyhan/e-commerce-web-page/blob/main/readme-files/views/signIn-register.gif?raw=true" width="70%">
+
 <br> <br>
 
 ### Wishlist
 <br>
-<img src="https://github.com/beyzanur-seyhan/e-commerce-web-page/blob/main/readme-files/views/signIn-register.gif?raw=true" width="70%">
+
 <br> <br>
 
 ## Getting Started
