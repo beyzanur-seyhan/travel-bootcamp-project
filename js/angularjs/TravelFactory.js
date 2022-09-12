@@ -78,15 +78,6 @@ TravelFactoryModule.factory("TravelFactory", function(){
           return RestaurantsListData;
         },   
 
-        DoToggleToWishListClassName: function(WishIndex){
-          if(WishIndex.className === "wish_bt"){
-            WishIndex.className += " liked";
-          }
-          else{
-            WishIndex.className = "wish_bt";
-          }
-        },
-
         DoCountRatingPoint: function(EndTime){
             var RatingPoint = [];
             

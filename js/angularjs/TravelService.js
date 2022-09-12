@@ -84,12 +84,19 @@ TravelServiceModule.service("TravelService", function ($http, $q) {
         RestaurantLists.forEach((restaurant) => {
             if (RestaurantTitle.toLowerCase() === restaurant.title.toLowerCase()) {
                 if (RestaurantLocation.toLowerCase() === restaurant.location.toLowerCase()) {
-                    if (SelectCategory === restaurant.category.toLowerCase()) {
+                    if (SelectCategory.toLowerCase() === restaurant.category.toLowerCase()) {
+                        Restaruant = [];
                         Restaruant.push(restaurant);
                     }
                 }
             }
         });
+
+        if(!Restaruant) {
+            alert("Search Result: None!");
+            return;
+        }
+
         return Restaruant;
     };
 
@@ -108,17 +115,17 @@ TravelServiceModule.service("TravelService", function ($http, $q) {
 
     this.DoApplyCouponCode = function (ProductsInCart, RandomCouponCode) {
 
-        var CouponCode = document.getElementById("CouponCode");
+        var ICouponCode = document.getElementById("CouponCode");
 
         if (!(ProductsInCart.length)) {
             alert("There are no products in the cart!");
             return;
         }
-        if (!(CouponCode.value)) {
+        if (!(ICouponCode.value)) {
             alert("Coupon code is empty!");
             return;
         }
-        if ((+(CouponCode.value)) !== RandomCouponCode) {
+        if ((+(ICouponCode.value)) !== RandomCouponCode) {
             alert(`Please enter the correct coupon code --> ${RandomCouponCode}`);
             return;
         }

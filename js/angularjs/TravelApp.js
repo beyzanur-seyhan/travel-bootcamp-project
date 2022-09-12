@@ -38,19 +38,10 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
     $scope.singleTour = TravelFactory.DisplayTourDetail(Recommend[id]);
   };
 
-  $scope.ViewAllTour = function (id) {
-    $scope.TourList = TravelFactory.ViewAllTour(Recommend[id]);
-  };
-
   /* ***************** Beyzanur Seyhan Start ***************** */
 
   $scope.ChangeClassNameDispStatus = function(){
     $scope.DisplayStatus = "d-none";
-  };
-
-  $scope.ToggleWishListClassName = function(WishIndex){
-    var WishList = document.getElementById(`WishlistLiked-${WishIndex}`);
-    TravelFactory.DoToggleToWishListClassName(WishList);
   };
 
   $scope.GetRestaurantsData = function (RIndex) {
@@ -78,16 +69,12 @@ TravelApp.controller('TravelController', function ($scope, $window, $http, $time
 
     if(!($scope.RestaurantTitle && $scope.RestaurantLocation && $scope.SelectCategory)){
       alert("Empty Fields!");
+      return;
     }
     else{
      $scope.RestaurantSearchResult = TravelService.DoGetRestaurantSearchResult($scope.RestaurantLists, $scope.RestaurantTitle, $scope.RestaurantLocation, $scope.SelectCategory);
-
-     if(!$scope.RestaurantSearchResult){
-      alert("Search Result: None!");
-     }
-     else{
-      $scope.RestaurantLists = $scope.RestaurantSearchResult;
-     }
+    
+     $scope.RestaurantLists = $scope.RestaurantSearchResult;
     }
 
     $scope.RestaurantTitle = "";
